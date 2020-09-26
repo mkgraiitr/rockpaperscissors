@@ -9,6 +9,7 @@ import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -26,8 +27,13 @@ class GameHandlerTest {
     @Test
     void playGame() {
         Player computerOne = new Robot();
+        computerOne.setPlayerName("TestSiri");
         Player computerTwo = new Robot();
-        gameHandler.playGame(computerOne, computerTwo);
+        computerTwo.setPlayerName("TestAlexa");
+        List<Player> list = new ArrayList<>();
+        list.add(computerOne);
+        list.add(computerTwo);
+        gameHandler.playGame(list);
         List<Player> playerList = gameHandler.getPlayers();
         assertEquals(playerList.get(0).getTotalScore(), computerOne.getTotalScore());
         assertEquals(playerList.get(1).getTotalScore(), computerTwo.getTotalScore());

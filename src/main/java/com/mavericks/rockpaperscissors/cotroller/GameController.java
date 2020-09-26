@@ -6,7 +6,9 @@ import com.mavericks.rockpaperscissors.players.Player;
 import com.mavericks.rockpaperscissors.players.Robot;
 import com.mavericks.rockpaperscissors.service.GameHandler;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 import static com.mavericks.rockpaperscissors.enums.CommandLineMessage.*;
@@ -43,13 +45,15 @@ public class GameController {
 
     private static void executeUserCommands(int userInput) {
         GameHandler gameHandler = new GameHandler();
-
+        List<Player> players = new ArrayList<>();
         if (userInput == 1) {
             Player playerOne = new Robot();
             playerOne.setPlayerName("Siri");
             Player playerTwo = new Robot();
             playerTwo.setPlayerName("Alexa");
-            gameHandler.playGame(playerOne, playerTwo);
+            players.add(playerOne);
+            players.add(playerTwo);
+            gameHandler.playGame(players);
         } else {
             printOnConsole(ENTER_NAME.getValue());
             String playerName = scanner.next();
@@ -59,7 +63,9 @@ public class GameController {
             playerOne.setNextMoveStrategy(new CommandLineSelection(scanner));
             Player playerTwo = new Robot();
             playerTwo.setPlayerName("Khaleesee");
-            gameHandler.playGame(playerOne, playerTwo);
+            players.add(playerOne);
+            players.add(playerTwo);
+            gameHandler.playGame(players);
             System.out.println(playerOne.getTotalScore() + " second player score :: " + playerTwo.getTotalScore());
         }
 

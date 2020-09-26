@@ -2,11 +2,16 @@ package com.mavericks.rockpaperscissors.players;
 
 import com.mavericks.rockpaperscissors.model.NextMoveStrategy;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Player {
     private String playerId;
     private String playerName;
     private int totalScore;
     private NextMoveStrategy nextMoveStrategy;
+    private String currentMove;
+    private List<String> historicalMove = new ArrayList<>();
 
     public void updateScore(int currentRoundScore) {
         totalScore += currentRoundScore;
@@ -36,6 +41,19 @@ public class Player {
         this.playerName = playerName;
     }
 
+    public List<String> getHistoricalMove() {
+        return historicalMove;
+    }
+
+    public void updateHistoricalMove(String move) {
+        this.currentMove = move;
+        historicalMove.add(move);
+    }
+
+    public String getCurrentMove() {
+        return currentMove;
+    }
+
     @Override
     public String toString() {
         return "Player{" +
@@ -44,4 +62,13 @@ public class Player {
                 '}';
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }

@@ -1,17 +1,39 @@
 package com.mavericks.rockpaperscissors.model;
 
-import com.mavericks.rockpaperscissors.enums.Shapes;
+import com.mavericks.rockpaperscissors.players.Player;
+import java.util.List;
+import static com.mavericks.rockpaperscissors.util.GameUtility.isPlayerOneWinner;
 
 public class ScoringEngine {
+    public List<Player> getPlayersWithRoundScore(List<Player> players) {
+        //return players.stream().flatMap(playerOne -> players.stream().filter(playerTwo -> !playerOne.equals(playerTwo))
+        //  .map(ScoringEngine::updateCurrentRoundStats)).collect(Collectors.toList());
+//        return players.stream().flatMap(playerOne -> players.stream().filter(playerTwo -> !playerOne.equals(playerTwo))
+//          .map(player -> {updateCurrentRoundStats(playerOne, player); return player;})).collect(Collectors.toList());
 
-    public int getCurrentRoundScore(String playerOneShape, String playerTwoShape) {
-        return playerOneShape.equals(playerTwoShape) ? 0 : isPlayerOneWinner(playerOneShape, playerTwoShape) ? 1 : -1;
+        for (int playerOneIndex = 0; playerOneIndex < players.size(); playerOneIndex++) {
+            for (int playerTwoIndex = playerOneIndex + 1; playerTwoIndex < players.size(); playerTwoIndex++) {
+                updateCurrentRoundStats(players.get(playerOneIndex), players.get(playerTwoIndex));
+            }
+        }
+        return players;
     }
 
-    private boolean isPlayerOneWinner(String playerOneShape, String playerTwoShape) {
-        return ((playerOneShape.equals(Shapes.SCISSIORS.getValue()) && playerTwoShape.equals(Shapes.PAPER.getValue()))
-                || (playerOneShape.equals(Shapes.ROCK.getValue()) && playerTwoShape.equals(Shapes.SCISSIORS.getValue()))
-                || (playerOneShape.equals(Shapes.PAPER.getValue()) && playerTwoShape.equals(Shapes.ROCK.getValue())));
-    }
+    private void updateCurrentRoundStats(Player playerOne, Player playerTwo) {
+        String playerOneSelection = playerOne.getPlayerMove();
+        String playerTwoSelection = playerTwo.getPlayerMove();
 
+        playerOne.updateHistoricalMove(playerOneSelection);
+        playerTwo.updateHistoricalMove(playerTwoSelection);
+
+        if (playerOneSelection.equals(playerTwoSelection)) {
+            playerOne.updateScore(0);
+            playerTwo.updateScore(0);
+        } else if (isPlayerOneWinner(playerOneSelection, playerTwoSelection)) {
+            playerOne.updateScore(1);
+        } else {
+            playerTwo.updateScore(1);
+        }
+
+    }
 }
