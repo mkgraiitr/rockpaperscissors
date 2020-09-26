@@ -1,18 +1,12 @@
 package com.mavericks.rockpaperscissors.players;
 
 import com.mavericks.rockpaperscissors.model.NextMoveStrategy;
-import lombok.*;
 
-@Getter
-@Setter
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
 public class Player {
-    protected String playerId;
-    protected String playerName;
-    protected int totalScore;
-    protected NextMoveStrategy nextMoveStrategy;
+    private String playerId;
+    private String playerName;
+    private int totalScore;
+    private NextMoveStrategy nextMoveStrategy;
 
     public void updateScore(int currentRoundScore) {
         totalScore += currentRoundScore;
@@ -32,6 +26,14 @@ public class Player {
 
     public String getPlayerMove(){
         return nextMoveStrategy.makeMove();
+    }
+
+    public void setPlayerId(String playerId) {
+        this.playerId = playerId;
+    }
+
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
     }
 
     @Override

@@ -5,9 +5,6 @@ import com.mavericks.rockpaperscissors.players.Human;
 import com.mavericks.rockpaperscissors.players.Player;
 import com.mavericks.rockpaperscissors.players.Robot;
 import com.mavericks.rockpaperscissors.service.GameHandler;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -48,17 +45,20 @@ public class GameController {
         GameHandler gameHandler = new GameHandler();
 
         if (userInput == 1) {
-            Player playerOne = Robot.builder().playerId("1").playerName("Siri").build();
-            Player playerTwo = Robot.builder().playerId("2").playerName("Alexa").build();
-
+            Player playerOne = new Robot();
+            playerOne.setPlayerName("Siri");
+            Player playerTwo = new Robot();
+            playerTwo.setPlayerName("Alexa");
             gameHandler.playGame(playerOne, playerTwo);
         } else {
             printOnConsole(ENTER_NAME.getValue());
             String playerName = scanner.next();
 
             Player playerOne = new Human();
+            playerOne.setPlayerName(playerName);
             playerOne.setNextMoveStrategy(new CommandLineSelection(scanner));
             Player playerTwo = new Robot();
+            playerTwo.setPlayerName("Khaleesee");
             gameHandler.playGame(playerOne, playerTwo);
             System.out.println(playerOne.getTotalScore() + " second player score :: " + playerTwo.getTotalScore());
         }
