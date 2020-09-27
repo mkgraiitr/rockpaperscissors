@@ -22,6 +22,14 @@ import static org.junit.jupiter.api.Assertions.*;
 class GameHandlerTest {
     private Game game = new Game();
 
+    @InjectMocks
+    private ScoreBoard scoreBoard = new ScoreBoard();
+
+    @Before
+    void setup() {
+        MockitoAnnotations.initMocks(this);
+    }
+
     @Test
     void playGame() {
         Player computerOne = new Robot();
@@ -34,7 +42,6 @@ class GameHandlerTest {
         list.add(computerOne);
         list.add(computerTwo);
         game.playGame(list);
-        ScoreBoard scoreBoard = game.getScoreBoard();
         String playerOneSelection = scoreBoard.getRounds().get(0).getPlayerSelections().get(0).getPlayerSelection();
         String playerTwoSelection = scoreBoard.getRounds().get(0).getPlayerSelections().get(1).getPlayerSelection();
 

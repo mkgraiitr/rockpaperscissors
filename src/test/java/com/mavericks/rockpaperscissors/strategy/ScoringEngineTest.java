@@ -39,13 +39,9 @@ class ScoringEngineTest {
         players.add(playerOne);
         players.add(playerTwo);
         Round round = scoringEngine.getPlayersWithRoundScore(players);
-        System.out.println(round.getPlayerScores());
         int actualScore = round.getPlayerScores().get(0).getTotalScore();
         String playerOneSelection = round.getPlayerSelections().get(0).getPlayerSelection();
         String playerTwoSelection = round.getPlayerSelections().get(1).getPlayerSelection();
-        System.out.println(playerOneSelection);
-        System.out.println(playerTwoSelection);
-        //System.out.println("Player1:: " + playerOneSelection + " Player2:: " + playerTwoSelection);
         int expectedScore = playerOneSelection.equals(playerTwoSelection) ? 0 : isPlayerOneWinner(playerOneSelection, playerTwoSelection) ? 1 : -1;
         assertEquals(expectedScore, actualScore);
     }

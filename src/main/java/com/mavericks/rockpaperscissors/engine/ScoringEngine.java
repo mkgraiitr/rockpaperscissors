@@ -23,7 +23,6 @@ public class ScoringEngine {
             round.setPlayerScores(playerScore);
         }
 
-
         for (int playerOneIndex = 0; playerOneIndex < players.size(); playerOneIndex++) {
             for (int playerTwoIndex = playerOneIndex + 1; playerTwoIndex < players.size(); playerTwoIndex++) {
                 String playerOneSelection = round.getPlayerSelections().get(playerOneIndex).getPlayerSelection();
@@ -44,10 +43,8 @@ public class ScoringEngine {
 
                 round.setPlayerScores(playerOneIndex, playerOneScore);
                 round.setPlayerScores(playerTwoIndex, playerTwoScore);
-
             }
         }
-
         return round;
     }
 

@@ -14,7 +14,6 @@ import java.util.*;
 import static com.mavericks.rockpaperscissors.enums.CommandLineMessage.*;
 import static com.mavericks.rockpaperscissors.enums.Score.WINNING_SCORE;
 import static com.mavericks.rockpaperscissors.util.CommandUtility.exitCommandLine;
-import static com.mavericks.rockpaperscissors.util.GameUtility.printOnConsole;
 
 public class Game {
 
@@ -57,10 +56,10 @@ public class Game {
                 }
 
             } catch (InputMismatchException e) {
-                printOnConsole(INVALID_INPUT.getValue());
+                System.out.println(INVALID_INPUT.getValue());
                 scanner.nextLine();
             } catch (Exception e) {
-                printOnConsole(e.getMessage());
+                System.out.println(e.getMessage());
                 exitCommandLine(scanner);
             }
         }
@@ -73,7 +72,7 @@ public class Game {
             scoreBoard.setRounds(round);
             round = scoringEngine.getPlayersWithRoundScore(players);
         }
-        int lastRound = scoreBoard.getRounds().size() -1;
+        int lastRound = scoreBoard.getRounds().size() - 1;
         String winner = scoreBoard.getRounds().get(lastRound).getPlayerScores().stream().max(Comparator.comparing(PlayerScore::getTotalScore)).get().getPlayerId();
         if (winner != null) {
             System.out.println(winner + " is the winner.");
@@ -82,11 +81,7 @@ public class Game {
         }
     }
 
-    public ScoreBoard getScoreBoard() {
-        return scoreBoard;
-    }
-
-    private static boolean isGameOn(Round round) {
+    private boolean isGameOn(Round round) {
         return round.getPlayerScores().stream().allMatch(player -> player.getTotalScore() < WINNING_SCORE.getValue());
     }
 
