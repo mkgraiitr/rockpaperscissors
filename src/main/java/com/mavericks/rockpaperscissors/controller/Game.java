@@ -37,9 +37,9 @@ public class Game {
                     System.out.println(ENTER_USERTYPE.getValue());
                     int userType = scanner.nextInt();
                     Player player;
-                    if(userType==1){
-                         player = new Human();
-                         player.setPlayerName(userName);
+                    if (userType == 1) {
+                        player = new Human();
+                        player.setPlayerName(userName);
                     } else {
                         player = new Robot();
                         player.setNextMoveStrategy(new CommandLineSelection(scanner));
