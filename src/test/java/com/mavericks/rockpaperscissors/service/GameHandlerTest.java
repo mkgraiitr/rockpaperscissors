@@ -29,7 +29,7 @@ class GameHandlerTest {
         computerOne.setPlayerId("1");
         Player computerTwo = new Robot();
         computerTwo.setPlayerName("TestAlexa");
-        computerOne.setPlayerId("2");
+        computerTwo.setPlayerId("2");
         List<Player> list = new ArrayList<>();
         list.add(computerOne);
         list.add(computerTwo);

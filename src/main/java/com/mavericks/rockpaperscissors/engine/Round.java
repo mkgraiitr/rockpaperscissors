@@ -20,7 +20,7 @@ public class Round {
     }
 
     public void setPlayerScores(int index, PlayerScore playerScore) {
-        playerScores.add(playerScore);
+        playerScores.set(index, playerScore);
     }
 
     public void setPlayerScores(PlayerScore playerScore) {

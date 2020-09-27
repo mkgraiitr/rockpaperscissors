@@ -3,8 +3,6 @@ package com.mavericks.rockpaperscissors.engine;
 import com.mavericks.rockpaperscissors.players.Player;
 
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import static com.mavericks.rockpaperscissors.enums.Score.*;
 import static com.mavericks.rockpaperscissors.util.GameUtility.isPlayerOneWinner;
@@ -49,9 +47,6 @@ public class ScoringEngine {
 
             }
         }
-
-        System.out.println(round.getPlayerScores());
-        System.out.println(round.getPlayerSelections());
 
         return round;
     }

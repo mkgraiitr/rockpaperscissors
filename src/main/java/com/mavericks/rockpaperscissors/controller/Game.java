@@ -20,6 +20,7 @@ public class Game {
 
     private static Scanner scanner = new Scanner(System.in);
     private ScoreBoard scoreBoard = new ScoreBoard();
+    private ScoringEngine scoringEngine = new ScoringEngine();
 
     public static void receiveUserInputs() {
         List<Player> players = new ArrayList<>();
@@ -29,7 +30,7 @@ public class Game {
             try {
                 System.out.println(CHOOSE_PLAYERS.getValue());
                 int userInput = scanner.nextInt();
-                for (int playerDeatils = 0; playerDeatils < userInput; playerDeatils++) {
+                for (int playerNumber = 0; playerNumber < userInput; playerNumber++) {
                     System.out.println(ENTER_USERNAME.getValue());
                     String userName = scanner.next();
                     System.out.println(ENTER_USERTYPE.getValue());
@@ -38,16 +39,18 @@ public class Game {
                     if (userType == 1) {
                         player = new Human();
                         player.setPlayerName(userName);
+                        player.setPlayerId(String.valueOf(playerNumber));
                         player.setNextMoveStrategy(new CommandLineSelection(scanner));
                     } else {
                         player = new Robot();
                         player.setPlayerName(userName);
+                        player.setPlayerId(String.valueOf(playerNumber));
                     }
                     players.add(player);
                 }
 
-                //Game game = new Game();
-                playGame(players);
+                Game game = new Game();
+                game.playGame(players);
                 if (userInput == 3) {
                     isCommandLineActive = false;
                     exitCommandLine(scanner);
@@ -63,14 +66,12 @@ public class Game {
         }
     }
 
-    public static void playGame(List<Player> players) {
-        ScoringEngine scoringEngine = new ScoringEngine();
-        ScoreBoard scoreBoard = new ScoreBoard();
+    public void playGame(List<Player> players) {
         Round round = scoringEngine.getPlayersWithRoundScore(players);
         while (isGameOn(round)) {
-            round = scoringEngine.getPlayersWithRoundScore(players);
             //round..stream().map(player -> player.setCurrentRound(round)).forEach(System.out::println);
             scoreBoard.setRounds(round);
+            round = scoringEngine.getPlayersWithRoundScore(players);
         }
         int lastRound = scoreBoard.getRounds().size() -1;
         String winner = scoreBoard.getRounds().get(lastRound).getPlayerScores().stream().max(Comparator.comparing(PlayerScore::getTotalScore)).get().getPlayerId();
@@ -86,7 +87,6 @@ public class Game {
     }
 
     private static boolean isGameOn(Round round) {
-        round.getPlayerScores().stream().forEach(System.out::println);
         return round.getPlayerScores().stream().allMatch(player -> player.getTotalScore() < WINNING_SCORE.getValue());
     }
 
