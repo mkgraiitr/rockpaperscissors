@@ -1,17 +1,9 @@
-package com.mavericks.rockpaperscissors.model;
+package com.mavericks.rockpaperscissors.strategy;
 
-import org.junit.Before;
-import org.junit.Ignore;
-import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.util.Scanner;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 class CommandLineSelectionTest {

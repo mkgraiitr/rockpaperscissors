@@ -1,7 +1,7 @@
 package com.mavericks.rockpaperscissors.service;
 
 import com.mavericks.rockpaperscissors.players.Player;
-import com.mavericks.rockpaperscissors.model.ScoringEngine;
+import com.mavericks.rockpaperscissors.engine.ScoringEngine;
 
 import java.util.*;
 

@@ -1,6 +1,6 @@
-package com.mavericks.rockpaperscissors.cotroller;
+package com.mavericks.rockpaperscissors.controller;
 
-import com.mavericks.rockpaperscissors.model.CommandLineSelection;
+import com.mavericks.rockpaperscissors.strategy.CommandLineSelection;
 import com.mavericks.rockpaperscissors.players.Human;
 import com.mavericks.rockpaperscissors.players.Player;
 import com.mavericks.rockpaperscissors.players.Robot;

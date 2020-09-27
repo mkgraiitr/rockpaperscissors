@@ -1,4 +1,4 @@
-package com.mavericks.rockpaperscissors.model;
+package com.mavericks.rockpaperscissors.strategy;
 
 public class NextGenShapeSelection implements NextMoveStrategy {
     @Override

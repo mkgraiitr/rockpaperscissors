@@ -1,6 +1,6 @@
 package com.mavericks.rockpaperscissors.players;
 
-import com.mavericks.rockpaperscissors.model.NextMoveStrategy;
+import com.mavericks.rockpaperscissors.strategy.NextMoveStrategy;
 
 import java.util.ArrayList;
 import java.util.List;

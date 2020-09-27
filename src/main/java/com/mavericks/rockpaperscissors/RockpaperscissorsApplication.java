@@ -1,6 +1,6 @@
 package com.mavericks.rockpaperscissors;
 
-import com.mavericks.rockpaperscissors.cotroller.GameController;
+import com.mavericks.rockpaperscissors.controller.GameController;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

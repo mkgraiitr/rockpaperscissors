@@ -1,8 +1,8 @@
-package com.mavericks.rockpaperscissors.model;
+package com.mavericks.rockpaperscissors.strategy;
 
+import com.mavericks.rockpaperscissors.engine.ScoringEngine;
 import com.mavericks.rockpaperscissors.players.Player;
 import com.mavericks.rockpaperscissors.players.Robot;
-import com.mavericks.rockpaperscissors.util.GameUtility;
 import org.junit.Before;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;

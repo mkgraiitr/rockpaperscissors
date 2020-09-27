@@ -1,6 +1,6 @@
 package com.mavericks.rockpaperscissors.players;
 
-import com.mavericks.rockpaperscissors.model.CommandLineSelection;
+import com.mavericks.rockpaperscissors.strategy.CommandLineSelection;
 
 
 public class Human extends Player {

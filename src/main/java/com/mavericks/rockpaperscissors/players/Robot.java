@@ -1,6 +1,6 @@
 package com.mavericks.rockpaperscissors.players;
 
-import com.mavericks.rockpaperscissors.model.RandomShapeSelection;
+import com.mavericks.rockpaperscissors.strategy.RandomShapeSelection;
 
 public class Robot extends Player {
     public Robot() {

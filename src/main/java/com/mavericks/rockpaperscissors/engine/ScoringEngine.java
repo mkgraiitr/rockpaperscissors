@@ -1,4 +1,4 @@
-package com.mavericks.rockpaperscissors.model;
+package com.mavericks.rockpaperscissors.engine;
 
 import com.mavericks.rockpaperscissors.players.Player;
 import java.util.List;

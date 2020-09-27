@@ -1,6 +1,5 @@
-package com.mavericks.rockpaperscissors.model;
+package com.mavericks.rockpaperscissors.strategy;
 
-import com.mavericks.rockpaperscissors.enums.CommandLineMessage;
 import com.mavericks.rockpaperscissors.enums.Shapes;
 
 import java.util.InputMismatchException;
