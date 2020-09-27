@@ -1,6 +1,10 @@
 package com.mavericks.rockpaperscissors.engine;
 
 public class PlayerSelection {
+
+    private String playerId;
+    private String playerSelection;
+
     public String getPlayerId() {
         return playerId;
     }
@@ -16,7 +20,4 @@ public class PlayerSelection {
     public void setPlayerSelection(String playerSelection) {
         this.playerSelection = playerSelection;
     }
-
-    private String playerId;
-    private String playerSelection;
 }

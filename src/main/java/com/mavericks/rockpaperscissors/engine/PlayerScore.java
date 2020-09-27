@@ -1,6 +1,9 @@
 package com.mavericks.rockpaperscissors.engine;
 
 public class PlayerScore {
+    private String playerId;
+    private int updatedScore;
+
     public String getPlayerId() {
         return playerId;
     }
@@ -16,7 +19,4 @@ public class PlayerScore {
     public void setUpdatedScore(int updatedScore) {
         this.updatedScore = updatedScore;
     }
-
-    private String playerId;
-    private int updatedScore;
 }

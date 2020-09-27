@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Round {
-    public List<PlayerSelection> getPlayerSelectionList() {
+    private List<PlayerSelection> playerSelections = new ArrayList<>();
+    private List<PlayerScore> playerScores = new ArrayList<>();
+
+    public List<PlayerSelection> getPlayerSelections() {
         return playerSelections;
     }
 
-    public void setPlayerSelectionList(List<PlayerSelection> playerSelectionList) {
-        this.playerSelections = playerSelectionList;
+    public void setPlayerSelections(List<PlayerSelection> playerSelections) {
+        this.playerSelections = playerSelections;
     }
 
     public List<PlayerScore> getPlayerScores() {
@@ -19,7 +22,4 @@ public class Round {
     public void setPlayerScores(List<PlayerScore> playerScores) {
         this.playerScores = playerScores;
     }
-
-    private List<PlayerSelection> playerSelections = new ArrayList<>();
-    private List<PlayerScore> playerScores = new ArrayList<>();
 }
