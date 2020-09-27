@@ -11,7 +11,7 @@ public enum CommandLineMessage {
     CHOOSE_PLAYERS("Dear user, please choose number of players:: "),
     CHOOSE_GAME("To play computer vs computer, please enter 1. \nTo play computer vs player please enter 2. \nTo quit please enter 3 on console! "),
     ENTER_USERNAME("Please enter user name:: "),
-    ENTER_USERTYPE("Please enter user name:: "),
+    ENTER_USERTYPE("Please enter user type: enter 1 for Human and 2 for Computer "),
     QUITING("Thanks for playing rock paper scissors with us. Hope you enjoyed!!\n");
 
     private final String value;

@@ -32,7 +32,7 @@ public class Game {
                 System.out.println(CHOOSE_PLAYERS.getValue());
                 int userInput = scanner.nextInt();
                 for (int playerDeatils = 0; playerDeatils < userInput; playerDeatils++) {
-                    System.out.println(ENTER_NAME.getValue());
+                    System.out.println(ENTER_USERNAME.getValue());
                     String userName = scanner.next();
                     System.out.println(ENTER_USERTYPE.getValue());
                     int userType = scanner.nextInt();
