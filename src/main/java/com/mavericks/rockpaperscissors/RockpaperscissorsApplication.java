@@ -1,15 +1,12 @@
 package com.mavericks.rockpaperscissors;
 
-import com.mavericks.rockpaperscissors.controller.GameController;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import com.mavericks.rockpaperscissors.controller.Game;
 
-@SpringBootApplication
+
 public class
 RockpaperscissorsApplication {
     public static void main(String[] args) {
-        SpringApplication.run(RockpaperscissorsApplication.class, args);
-        GameController.runUserCommands();
+        Game.runUserCommands();
     }
 
 }

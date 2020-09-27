@@ -1,5 +1,7 @@
 package com.mavericks.rockpaperscissors.controller;
 
+import com.mavericks.rockpaperscissors.engine.ScoreBoard;
+import com.mavericks.rockpaperscissors.enums.Score;
 import com.mavericks.rockpaperscissors.strategy.CommandLineSelection;
 import com.mavericks.rockpaperscissors.players.Human;
 import com.mavericks.rockpaperscissors.players.Player;
@@ -15,10 +17,10 @@ import static com.mavericks.rockpaperscissors.enums.CommandLineMessage.*;
 import static com.mavericks.rockpaperscissors.util.CommandUtility.exitCommandLine;
 import static com.mavericks.rockpaperscissors.util.GameUtility.printOnConsole;
 
-public class GameController {
+public class Game {
 
     private static Scanner scanner;
-
+    private ScoreBoard scoreBoard = new ScoreBoard();
     public static void runUserCommands() {
         scanner = new Scanner(System.in);
         printOnConsole(WELCOME_MSG.getValue());
@@ -67,6 +69,5 @@ public class GameController {
             players.add(playerTwo);
             gameHandler.playGame(players);
         }
-
     }
 }
