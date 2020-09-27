@@ -21,19 +21,39 @@ public class Game {
 
     private static Scanner scanner;
     private ScoreBoard scoreBoard = new ScoreBoard();
+
     public static void runUserCommands() {
+        List<Player> players = new ArrayList<>();
         scanner = new Scanner(System.in);
-        printOnConsole(WELCOME_MSG.getValue());
+        System.out.println(WELCOME_MSG.getValue());
         boolean isCommandLineActive = true;
         while (isCommandLineActive) {
             try {
-                printOnConsole(CHOOSE_GAME.getValue());
+                System.out.println(CHOOSE_PLAYERS.getValue());
                 int userInput = scanner.nextInt();
+                for (int playerDeatils = 0; playerDeatils < userInput; playerDeatils++) {
+                    System.out.println(ENTER_NAME.getValue());
+                    String userName = scanner.next();
+                    System.out.println(ENTER_USERTYPE.getValue());
+                    int userType = scanner.nextInt();
+                    Player player;
+                    if(userType==1){
+                         player = new Human();
+                         player.setPlayerName(userName);
+                    } else {
+                        player = new Robot();
+                        player.setNextMoveStrategy(new CommandLineSelection(scanner));
+                        player.setPlayerName(userName);
+                    }
+                    players.add(player);
+                }
+                GameHandler gameHandler = new GameHandler();
+                gameHandler.playGame(players);
+
                 if (userInput == 3) {
                     isCommandLineActive = false;
                     exitCommandLine(scanner);
                 }
-                executeUserCommands(userInput);
 
             } catch (InputMismatchException e) {
                 printOnConsole(INVALID_INPUT.getValue());
@@ -45,29 +65,4 @@ public class Game {
         }
     }
 
-    private static void executeUserCommands(int userInput) {
-        GameHandler gameHandler = new GameHandler();
-        List<Player> players = new ArrayList<>();
-        if (userInput == 1) {
-            Player playerOne = new Robot();
-            playerOne.setPlayerName("Siri");
-            Player playerTwo = new Robot();
-            playerTwo.setPlayerName("Alexa");
-            players.add(playerOne);
-            players.add(playerTwo);
-            gameHandler.playGame(players);
-        } else {
-            printOnConsole(ENTER_NAME.getValue());
-            String playerName = scanner.next();
-
-            Player playerOne = new Human();
-            playerOne.setPlayerName(playerName);
-            playerOne.setNextMoveStrategy(new CommandLineSelection(scanner));
-            Player playerTwo = new Robot();
-            playerTwo.setPlayerName("Khaleesee");
-            players.add(playerOne);
-            players.add(playerTwo);
-            gameHandler.playGame(players);
-        }
-    }
 }
