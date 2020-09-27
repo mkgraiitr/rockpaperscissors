@@ -1,13 +1,17 @@
 package com.mavericks.rockpaperscissors.engine;
 
 import com.mavericks.rockpaperscissors.players.Player;
+
 import java.util.List;
 
 import static com.mavericks.rockpaperscissors.enums.Score.*;
 import static com.mavericks.rockpaperscissors.util.GameUtility.isPlayerOneWinner;
 
 public class ScoringEngine {
-    public List<Player> getPlayersWithRoundScore(List<Player> players) {
+
+    Round round = new Round();
+
+    public Round getPlayersWithRoundScore(List<Player> players) {
         //return players.stream().flatMap(playerOne -> players.stream().filter(playerTwo -> !playerOne.equals(playerTwo))
         //  .map(ScoringEngine::updateCurrentRoundStats)).collect(Collectors.toList());
 //        return players.stream().flatMap(playerOne -> players.stream().filter(playerTwo -> !playerOne.equals(playerTwo))
@@ -18,26 +22,39 @@ public class ScoringEngine {
                 updateCurrentRoundStats(players.get(playerOneIndex), players.get(playerTwoIndex));
             }
         }
-        return players;
+        return round;
     }
 
     private void updateCurrentRoundStats(Player playerOne, Player playerTwo) {
-        String playerOneSelection = playerOne.getPlayerMove();
-        String playerTwoSelection = playerTwo.getPlayerMove();
+        String playerOneMove = playerOne.getPlayerMove();
+        String playerTwoMove = playerTwo.getPlayerMove();
 
-        playerOne.updateHistoricalMove(playerOneSelection);
-        playerTwo.updateHistoricalMove(playerTwoSelection);
+        PlayerSelection playerSelectionOne = new PlayerSelection();
+        PlayerSelection playerSelectionTwo = new PlayerSelection();
+        playerSelectionOne.setPlayerSelection(playerOneMove);
+        playerSelectionOne.setPlayerId(playerOne.getPlayerId());
+        playerSelectionTwo.setPlayerSelection(playerTwoMove);
+        playerSelectionTwo.setPlayerId(playerTwo.getPlayerId());
 
-        if (playerOneSelection.equals(playerTwoSelection)) {
-            playerOne.updateScore(DRAW.getValue());
-            playerTwo.updateScore(DRAW.getValue());
-        } else if (isPlayerOneWinner(playerOneSelection, playerTwoSelection)) {
-            playerOne.updateScore(WIN.getValue());
-            playerTwo.updateScore(LOSE.getValue());
+        PlayerScore playerScoreOne = new PlayerScore();
+        PlayerScore playerScoreTwo = new PlayerScore();
+
+        playerScoreOne.setPlayerId(playerOne.getPlayerId());
+        playerScoreTwo.setPlayerId(playerTwo.getPlayerId());
+
+        if (playerOneMove.equals(playerTwoMove)) {
+            playerScoreOne.updateTotalScore(DRAW.getValue());
+            playerScoreTwo.updateTotalScore(DRAW.getValue());
+        } else if (isPlayerOneWinner(playerOneMove, playerTwoMove)) {
+            playerScoreOne.updateTotalScore(WIN.getValue());
+            playerScoreTwo.updateTotalScore(LOSE.getValue());
         } else {
-            playerTwo.updateScore(WIN.getValue());
-            playerOne.updateScore(LOSE.getValue());
+            playerScoreTwo.updateTotalScore(WIN.getValue());
+            playerScoreOne.updateTotalScore(LOSE.getValue());
         }
-
+        round.setPlayerScores(playerScoreOne);
+        round.setPlayerScores(playerScoreTwo);
+        round.setPlayerSelections(playerSelectionOne);
+        round.setPlayerSelections(playerSelectionTwo);
     }
 }

@@ -2,7 +2,7 @@ package com.mavericks.rockpaperscissors.engine;
 
 public class PlayerScore {
     private String playerId;
-    private int updatedScore;
+    private int totalScore;
 
     public String getPlayerId() {
         return playerId;
@@ -12,11 +12,11 @@ public class PlayerScore {
         this.playerId = playerId;
     }
 
-    public int getUpdatedScore() {
-        return updatedScore;
+    public int getTotalScore() {
+        return totalScore;
     }
 
-    public void setUpdatedScore(int updatedScore) {
-        this.updatedScore = updatedScore;
+    public void updateTotalScore(int currentRoundScore) {
+        totalScore+=currentRoundScore;
     }
 }

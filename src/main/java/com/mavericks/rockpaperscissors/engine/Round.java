@@ -11,15 +11,15 @@ public class Round {
         return playerSelections;
     }
 
-    public void setPlayerSelections(List<PlayerSelection> playerSelections) {
-        this.playerSelections = playerSelections;
+    public void setPlayerSelections(PlayerSelection playerSelection) {
+        playerSelections.add(playerSelection);
     }
 
     public List<PlayerScore> getPlayerScores() {
         return playerScores;
     }
 
-    public void setPlayerScores(List<PlayerScore> playerScores) {
-        this.playerScores = playerScores;
+    public void setPlayerScores(PlayerScore playerScore) {
+        playerScores.add(playerScore);
     }
 }

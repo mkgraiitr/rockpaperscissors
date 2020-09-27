@@ -1,5 +1,8 @@
 package com.mavericks.rockpaperscissors.service;
 
+import com.mavericks.rockpaperscissors.controller.Game;
+import com.mavericks.rockpaperscissors.engine.ScoreBoard;
+import com.mavericks.rockpaperscissors.enums.Score;
 import com.mavericks.rockpaperscissors.players.Player;
 import com.mavericks.rockpaperscissors.players.Robot;
 import org.junit.Before;
@@ -16,13 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 class GameHandlerTest {
-
-    @InjectMocks
-    private GameHandler gameHandler = new GameHandler();
-    @Before
-    void setup() {
-        MockitoAnnotations.initMocks(this);
-    }
+    private Game game = new Game();
 
     @Test
     void playGame() {
@@ -33,9 +30,9 @@ class GameHandlerTest {
         List<Player> list = new ArrayList<>();
         list.add(computerOne);
         list.add(computerTwo);
-        gameHandler.playGame(list);
-        List<Player> playerList = gameHandler.getPlayers();
-        assertEquals(playerList.get(0).getTotalScore(), computerOne.getTotalScore());
+        game.playGame(list);
+        ScoreBoard scoreBoard = game.getScoreBoard();
+        assertEquals(scoreBoard.getRounds().get(0).getPlayerScores().get(0).getTotalScore(), computerOne.getTotalScore());
         assertEquals(playerList.get(1).getTotalScore(), computerTwo.getTotalScore());
     }
 }
