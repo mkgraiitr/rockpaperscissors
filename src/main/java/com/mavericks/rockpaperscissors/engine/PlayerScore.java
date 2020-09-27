@@ -17,6 +17,19 @@ public class PlayerScore {
     }
 
     public void updateTotalScore(int currentRoundScore) {
-        totalScore+=currentRoundScore;
+        totalScore += currentRoundScore;
+    }
+
+    @Override
+    public String toString() {
+        return "PlayerScore{" +
+                "playerId='" + playerId + '\'' +
+                ", totalScore=" + totalScore +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
     }
 }

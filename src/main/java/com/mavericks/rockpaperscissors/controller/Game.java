@@ -21,7 +21,7 @@ public class Game {
     private static Scanner scanner = new Scanner(System.in);
     private ScoreBoard scoreBoard = new ScoreBoard();
 
-    public static void runUserCommands() {
+    public static void receiveUserInputs() {
         List<Player> players = new ArrayList<>();
         System.out.println(WELCOME_MSG.getValue());
         boolean isCommandLineActive = true;
@@ -45,9 +45,9 @@ public class Game {
                     }
                     players.add(player);
                 }
-                Game game = new Game();
-                game.playGame(players);
 
+                //Game game = new Game();
+                playGame(players);
                 if (userInput == 3) {
                     isCommandLineActive = false;
                     exitCommandLine(scanner);
@@ -63,17 +63,16 @@ public class Game {
         }
     }
 
-    public void playGame(List<Player> players) {
+    public static void playGame(List<Player> players) {
         ScoringEngine scoringEngine = new ScoringEngine();
         ScoreBoard scoreBoard = new ScoreBoard();
-        Round round = new Round();
+        Round round = scoringEngine.getPlayersWithRoundScore(players);
         while (isGameOn(round)) {
             round = scoringEngine.getPlayersWithRoundScore(players);
-            //How to add round here??
-            //gamePlayers.stream().map(player -> player.setCurrentRound(round)).forEach(System.out::println);
+            //round..stream().map(player -> player.setCurrentRound(round)).forEach(System.out::println);
             scoreBoard.setRounds(round);
         }
-        int lastRound = scoreBoard.getRounds().size();
+        int lastRound = scoreBoard.getRounds().size() -1;
         String winner = scoreBoard.getRounds().get(lastRound).getPlayerScores().stream().max(Comparator.comparing(PlayerScore::getTotalScore)).get().getPlayerId();
         if (winner != null) {
             System.out.println(winner + " is the winner.");
@@ -86,7 +85,8 @@ public class Game {
         return scoreBoard;
     }
 
-    private boolean isGameOn(Round round) {
+    private static boolean isGameOn(Round round) {
+        round.getPlayerScores().stream().forEach(System.out::println);
         return round.getPlayerScores().stream().allMatch(player -> player.getTotalScore() < WINNING_SCORE.getValue());
     }
 

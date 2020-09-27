@@ -20,4 +20,12 @@ public class PlayerSelection {
     public void setPlayerSelection(String playerSelection) {
         this.playerSelection = playerSelection;
     }
+
+    @Override
+    public String toString() {
+        return "PlayerSelection{" +
+                "playerId='" + playerId + '\'' +
+                ", playerSelection='" + playerSelection + '\'' +
+                '}';
+    }
 }

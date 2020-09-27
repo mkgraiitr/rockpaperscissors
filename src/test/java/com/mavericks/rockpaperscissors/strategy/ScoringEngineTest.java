@@ -1,5 +1,6 @@
 package com.mavericks.rockpaperscissors.strategy;
 
+import com.mavericks.rockpaperscissors.engine.Round;
 import com.mavericks.rockpaperscissors.engine.ScoringEngine;
 import com.mavericks.rockpaperscissors.players.Player;
 import com.mavericks.rockpaperscissors.players.Robot;
@@ -19,7 +20,6 @@ import static org.junit.jupiter.api.Assertions.*;
 @RunWith(SpringJUnit4ClassRunner.class)
 class ScoringEngineTest {
 
-    @InjectMocks
     private ScoringEngine scoringEngine = new ScoringEngine();
 
     @Before
@@ -31,19 +31,22 @@ class ScoringEngineTest {
     void testCurrentRoundScore() {
         Player playerOne = new Robot();
         playerOne.setPlayerName("TestSiri");
+        playerOne.setPlayerId("1");
         Player playerTwo = new Robot();
         playerTwo.setPlayerName("TestAlexa");
+        playerTwo.setPlayerId("2");
         List<Player> players = new ArrayList<>();
         players.add(playerOne);
         players.add(playerTwo);
-        List<Player> gamePlayers = scoringEngine.getPlayersWithRoundScore(players);
-        Player gamePlayerOne = gamePlayers.get(0);
-        Player gamePlayerTwo = gamePlayers.get(1);
-
-        String playerOneSelection = gamePlayerOne.getHistoricalMove().get(0);
-        String playerTwoSelection = gamePlayerTwo.getHistoricalMove().get(0);
-        System.out.println("Player1:: " + playerOneSelection + " Player2:: " + playerTwoSelection);
-        int playerOneScore = playerOneSelection.equals(playerTwoSelection) ? 0 : isPlayerOneWinner(playerOneSelection, playerTwoSelection) ? 1 : -1;
-        assertEquals(playerOneScore, gamePlayerOne.getTotalScore());
+        Round round = scoringEngine.getPlayersWithRoundScore(players);
+        System.out.println(round.getPlayerScores());
+        int actualScore = round.getPlayerScores().get(0).getTotalScore();
+        String playerOneSelection = round.getPlayerSelections().get(0).getPlayerSelection();
+        String playerTwoSelection = round.getPlayerSelections().get(1).getPlayerSelection();
+        System.out.println(playerOneSelection);
+        System.out.println(playerTwoSelection);
+        //System.out.println("Player1:: " + playerOneSelection + " Player2:: " + playerTwoSelection);
+        int expectedScore = playerOneSelection.equals(playerTwoSelection) ? 0 : isPlayerOneWinner(playerOneSelection, playerTwoSelection) ? 1 : -1;
+        assertEquals(expectedScore, actualScore);
     }
 }
