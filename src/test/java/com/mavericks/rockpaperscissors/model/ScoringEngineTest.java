@@ -42,6 +42,7 @@ class ScoringEngineTest {
 
         String playerOneSelection = gamePlayerOne.getHistoricalMove().get(0);
         String playerTwoSelection = gamePlayerTwo.getHistoricalMove().get(0);
+        System.out.println("Player1:: " + playerOneSelection + " Player2:: " + playerTwoSelection);
         int playerOneScore = playerOneSelection.equals(playerTwoSelection) ? 0 : isPlayerOneWinner(playerOneSelection, playerTwoSelection) ? 1 : -1;
         assertEquals(playerOneScore, gamePlayerOne.getTotalScore());
     }

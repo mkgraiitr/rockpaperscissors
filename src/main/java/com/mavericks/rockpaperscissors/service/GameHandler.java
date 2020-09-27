@@ -5,6 +5,7 @@ import com.mavericks.rockpaperscissors.model.ScoringEngine;
 
 import java.util.*;
 
+import static com.mavericks.rockpaperscissors.enums.Score.*;
 import static com.mavericks.rockpaperscissors.util.GameUtility.printOnConsole;
 
 public class GameHandler {
@@ -15,10 +16,12 @@ public class GameHandler {
 
         while (isGameOn(players)) {
             gamePlayers = scoringEngine.getPlayersWithRoundScore(players);
-            System.out.println(gamePlayers);
-            gamePlayers.stream().map(player -> {return player.getPlayerName() + "selected" + player.getCurrentMove();}).forEach(System.out::println);
-            //printOnConsole("In Round " + round + " " + playerOne.getPlayerName() + " selected:: " + playerOneMove + " and " + playerTwo.getPlayerName() + "selected:: " + playerTwoMove
-             //       + "\n" + playerOne + playerTwo + "\n");
+            //How to add round here??
+            //gamePlayers.stream().map(player -> player.setCurrentRound(round)).forEach(System.out::println);
+            for(Player player:players){
+                player.setCurrentRound(round);
+            }
+            gamePlayers.forEach(System.out::println);
             round++;
         }
 
@@ -35,7 +38,7 @@ public class GameHandler {
     }
 
     private boolean isGameOn(List<Player> players){
-        return players.stream().allMatch(player -> player.getTotalScore()<10);
+        return players.stream().allMatch(player -> player.getTotalScore()< WINNING_SCORE.getValue());
     }
 
 }

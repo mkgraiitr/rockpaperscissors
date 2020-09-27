@@ -66,7 +66,6 @@ public class GameController {
             players.add(playerOne);
             players.add(playerTwo);
             gameHandler.playGame(players);
-            System.out.println(playerOne.getTotalScore() + " second player score :: " + playerTwo.getTotalScore());
         }
 
     }

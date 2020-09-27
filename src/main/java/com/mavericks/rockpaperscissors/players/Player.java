@@ -8,6 +8,7 @@ import java.util.List;
 public class Player {
     private String playerId;
     private String playerName;
+    private int currentRound;
     private int totalScore;
     private NextMoveStrategy nextMoveStrategy;
     private String currentMove;
@@ -54,11 +55,19 @@ public class Player {
         return currentMove;
     }
 
+    public int getCurrentRound() {
+        return currentRound;
+    }
+
+    public void setCurrentRound(int currentRound) {
+        this.currentRound = currentRound;
+    }
+
     @Override
     public String toString() {
-        return "Player{" +
-                " playerName = '" + playerName + '\'' +
-                ", totalScore = " + totalScore +
+        return " player '" + playerName + '\'' +
+                " selected " + getCurrentMove() +
+                " and scored in total = " + totalScore +
                 '}';
     }
 

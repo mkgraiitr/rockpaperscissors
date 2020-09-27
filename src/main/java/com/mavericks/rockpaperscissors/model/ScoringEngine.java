@@ -2,6 +2,8 @@ package com.mavericks.rockpaperscissors.model;
 
 import com.mavericks.rockpaperscissors.players.Player;
 import java.util.List;
+
+import static com.mavericks.rockpaperscissors.enums.Score.*;
 import static com.mavericks.rockpaperscissors.util.GameUtility.isPlayerOneWinner;
 
 public class ScoringEngine {
@@ -27,12 +29,14 @@ public class ScoringEngine {
         playerTwo.updateHistoricalMove(playerTwoSelection);
 
         if (playerOneSelection.equals(playerTwoSelection)) {
-            playerOne.updateScore(0);
-            playerTwo.updateScore(0);
+            playerOne.updateScore(DRAW.getValue());
+            playerTwo.updateScore(DRAW.getValue());
         } else if (isPlayerOneWinner(playerOneSelection, playerTwoSelection)) {
-            playerOne.updateScore(1);
+            playerOne.updateScore(WIN.getValue());
+            playerTwo.updateScore(LOSE.getValue());
         } else {
-            playerTwo.updateScore(1);
+            playerTwo.updateScore(WIN.getValue());
+            playerOne.updateScore(LOSE.getValue());
         }
 
     }
