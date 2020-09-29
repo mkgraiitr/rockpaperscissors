@@ -9,42 +9,36 @@ import static com.mavericks.rockpaperscissors.enums.Score.*;
 
 public class ScoringEngine {
 
-    Round round = new Round();
-
     public Round getPlayersWithRoundScore(List<Player> players) {
+        Round round = new Round();
         for (Player player : players) {
-            PlayerSelection playerSelection = new PlayerSelection();
-            playerSelection.setPlayerId(player.getPlayerId());
-            playerSelection.setPlayerSelection(player.getPlayerMove());
-            round.setPlayerSelections(playerSelection);
-
-            PlayerScore playerScore = new PlayerScore();
-            playerScore.setPlayerId(player.getPlayerId());
-            round.setPlayerScores(playerScore);
+            PlayerStatistics playerStatistics = new PlayerStatistics();
+            playerStatistics.setPlayerId(player.getPlayerId());
+            playerStatistics.setPlayerSelection(player.getPlayerMove());
+            round.setPlayerStatistics(playerStatistics);
         }
 
         for (int playerOneIndex = 0; playerOneIndex < players.size(); playerOneIndex++) {
             for (int playerTwoIndex = playerOneIndex + 1; playerTwoIndex < players.size(); playerTwoIndex++) {
-                PlayerSelection playerOneSelection = round.getPlayerSelections().get(playerOneIndex);
-                PlayerSelection playerTwoSelection = round.getPlayerSelections().get(playerTwoIndex);
-                PlayerScore playerOneScore = round.getPlayerScores().get(playerOneIndex);
-                PlayerScore playerTwoScore = round.getPlayerScores().get(playerTwoIndex);
 
-                if (playerOneSelection.getPlayerSelection().equals(playerTwoSelection.getPlayerSelection())) {
-                    playerOneScore.updateTotalScore(DRAW.getValue());
-                    playerTwoScore.updateTotalScore(DRAW.getValue());
+                PlayerStatistics playerOneStats = round.getPlayerStatistics().get(playerOneIndex);
+                PlayerStatistics playerTwoStats = round.getPlayerStatistics().get(playerTwoIndex);
+
+                if (playerOneStats.getPlayerSelection().equals(playerTwoStats.getPlayerSelection())) {
+                    playerOneStats.updateTotalScore(DRAW.getValue());
+                    playerTwoStats.updateTotalScore(DRAW.getValue());
                 } else {
-                    String winnerPlayerId = GameUtility.findWinner(playerOneSelection, playerTwoSelection);
-                    if (winnerPlayerId.equals(playerOneSelection.getPlayerId())) {
-                        playerOneScore.updateTotalScore(WIN.getValue());
-                        playerTwoScore.updateTotalScore(LOSE.getValue());
+                    String winnerPlayerId = GameUtility.findWinner(playerOneStats, playerTwoStats);
+                    if (winnerPlayerId.equals(playerOneStats.getPlayerId())) {
+                        playerOneStats.updateTotalScore(WIN.getValue());
+                        playerTwoStats.updateTotalScore(LOSE.getValue());
                     } else {
-                        playerTwoScore.updateTotalScore(WIN.getValue());
-                        playerOneScore.updateTotalScore(LOSE.getValue());
+                        playerTwoStats.updateTotalScore(WIN.getValue());
+                        playerOneStats.updateTotalScore(LOSE.getValue());
                     }
                 }
-                round.setPlayerScores(playerOneIndex, playerOneScore);
-                round.setPlayerScores(playerTwoIndex, playerTwoScore);
+                round.setPlayerStatistics(playerOneIndex, playerOneStats);
+                round.setPlayerStatistics(playerTwoIndex, playerTwoStats);
             }
         }
         return round;

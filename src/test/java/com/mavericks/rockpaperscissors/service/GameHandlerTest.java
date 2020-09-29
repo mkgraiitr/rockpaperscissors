@@ -1,7 +1,6 @@
 package com.mavericks.rockpaperscissors.service;
 
 import com.mavericks.rockpaperscissors.engine.Game;
-import com.mavericks.rockpaperscissors.engine.PlayerScore;
 import com.mavericks.rockpaperscissors.engine.ScoreBoard;
 import com.mavericks.rockpaperscissors.enums.Score;
 import com.mavericks.rockpaperscissors.players.Player;
@@ -39,10 +38,10 @@ class GameHandlerTest {
         game.playGame(list);
         int lastRoundIndex = scoreBoard.getRounds().size() - 1;
 
-        PlayerScore playerOneScore = scoreBoard.getRounds().get(lastRoundIndex).getPlayerScores().get(0);
-        PlayerScore playerTwoScore = scoreBoard.getRounds().get(lastRoundIndex).getPlayerScores().get(1);
+        int playerOneScore = scoreBoard.getRounds().get(lastRoundIndex).getPlayerStatistics().get(0).getTotalScore();
+        int playerTwoScore = scoreBoard.getRounds().get(lastRoundIndex).getPlayerStatistics().get(1).getTotalScore();
 
-        int winningScore = Math.max(playerOneScore.getTotalScore(), playerTwoScore.getTotalScore());
+        int winningScore = Math.max(playerOneScore, playerTwoScore);
 
         assertEquals(winningScore, Score.WINNING_SCORE.getValue());
     }

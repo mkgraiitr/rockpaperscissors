@@ -25,7 +25,7 @@ public class CommandHandler {
             try {
                 System.out.println(CHOOSE_PLAYERS.getValue());
                 int userInput = scanner.nextInt();
-                for (int playerNumber = 0; playerNumber < userInput; playerNumber++) {
+                for (int playerNumber = 1; playerNumber <= userInput; playerNumber++) {
                     System.out.println(ENTER_USERNAME.getValue());
                     String userName = scanner.next();
                     System.out.println(ENTER_USERTYPE.getValue());

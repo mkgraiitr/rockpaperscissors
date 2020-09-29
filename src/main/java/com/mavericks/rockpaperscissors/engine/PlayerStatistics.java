@@ -1,9 +1,9 @@
 package com.mavericks.rockpaperscissors.engine;
 
-public class PlayerSelection {
-
+public class PlayerStatistics {
     private String playerId;
     private String playerSelection;
+    private int totalScore;
 
     public String getPlayerId() {
         return playerId;
@@ -21,11 +21,16 @@ public class PlayerSelection {
         this.playerSelection = playerSelection;
     }
 
+    public int getTotalScore() {
+        return totalScore;
+    }
+
+    public void updateTotalScore(int currentRoundScore) {
+        totalScore += currentRoundScore;
+    }
+
     @Override
     public String toString() {
-        return "PlayerSelection{" +
-                "playerId='" + playerId + '\'' +
-                ", playerSelection='" + playerSelection + '\'' +
-                '}';
+        return "Player Id:: " + playerId + " selected -" + playerSelection + " and scored in total:: " + getTotalScore();
     }
 }

@@ -1,9 +1,5 @@
 package com.mavericks.rockpaperscissors.engine;
 
-import com.mavericks.rockpaperscissors.engine.PlayerScore;
-import com.mavericks.rockpaperscissors.engine.Round;
-import com.mavericks.rockpaperscissors.engine.ScoreBoard;
-import com.mavericks.rockpaperscissors.engine.ScoringEngine;
 import com.mavericks.rockpaperscissors.players.Player;
 
 import java.util.Comparator;
@@ -21,15 +17,13 @@ public class Game {
 
         while (isGameOn) {
             Round round = scoringEngine.getPlayersWithRoundScore(players);
-            List<PlayerScore> playerScores = round.getPlayerScores();
-            for(PlayerScore playerScore:playerScores){
-
-            }
+            System.out.println(round);
+            //round.getPlayerStatistics().get().forEach(System.out::println);
             scoreBoard.setRounds(round);
-            isGameOn = isGameOpen(round);
+            isGameOn = checkIfGameOn(round);
         }
         int lastRound = scoreBoard.getRounds().size() - 1;
-        String winner = scoreBoard.getRounds().get(lastRound).getPlayerScores().stream().max(Comparator.comparing(PlayerScore::getTotalScore)).get().getPlayerId();
+        String winner = scoreBoard.getRounds().get(lastRound).getPlayerStatistics().stream().max(Comparator.comparing(PlayerStatistics::getTotalScore)).get().getPlayerId();
         if (winner != null) {
             System.out.println(winner + " is the winner.");
         } else {
@@ -37,8 +31,8 @@ public class Game {
         }
     }
 
-    private boolean isGameOpen(Round round) {
-        return round.getPlayerScores().stream().allMatch(player -> player.getTotalScore() < WINNING_SCORE.getValue());
+    private boolean checkIfGameOn(Round round) {
+        return round.getPlayerStatistics().stream().allMatch(player -> player.getTotalScore() < WINNING_SCORE.getValue());
     }
 
 }

@@ -4,26 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Round {
-    private List<PlayerSelection> playerSelections = new ArrayList<>();
-    private List<PlayerScore> playerScores = new ArrayList<>();
+    private List<PlayerStatistics> allPlayerStatistics = new ArrayList<>();
 
-    public List<PlayerSelection> getPlayerSelections() {
-        return playerSelections;
+    public List<PlayerStatistics> getPlayerStatistics() {
+        return allPlayerStatistics;
     }
 
-    public void setPlayerSelections(PlayerSelection playerSelection) {
-        playerSelections.add(playerSelection);
+    public void setPlayerStatistics(PlayerStatistics playerStatistics) {
+        allPlayerStatistics.add(playerStatistics);
     }
 
-    public List<PlayerScore> getPlayerScores() {
-        return playerScores;
+    public void setPlayerStatistics(int index, PlayerStatistics playerStatistics) {
+        allPlayerStatistics.set(index, playerStatistics);
     }
 
-    public void setPlayerScores(int index, PlayerScore playerScore) {
-        playerScores.set(index, playerScore);
-    }
-
-    public void setPlayerScores(PlayerScore playerScore) {
-        playerScores.add(playerScore);
+    @Override
+    public String toString() {
+        return allPlayerStatistics.toString();
     }
 }
