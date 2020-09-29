@@ -17,7 +17,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(SpringExtension.class)
-class GameHandlerTest {
+class GameTest {
     @Mock
     private Game game = new Game();
 
