@@ -1,31 +1,24 @@
 package com.mavericks.rockpaperscissors.strategy;
 
+import com.mavericks.rockpaperscissors.engine.PlayerSelection;
 import com.mavericks.rockpaperscissors.engine.Round;
 import com.mavericks.rockpaperscissors.engine.ScoringEngine;
 import com.mavericks.rockpaperscissors.players.Player;
 import com.mavericks.rockpaperscissors.players.Robot;
-import org.junit.Before;
+import com.mavericks.rockpaperscissors.util.GameUtility;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.MockitoAnnotations;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.mavericks.rockpaperscissors.util.GameUtility.isPlayerOneWinner;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 class ScoringEngineTest {
 
     private ScoringEngine scoringEngine = new ScoringEngine();
-
-    @Before
-    void setup() {
-        MockitoAnnotations.initMocks(this);
-    }
 
     @Test
     void testCurrentRoundScore() {
@@ -40,9 +33,19 @@ class ScoringEngineTest {
         players.add(playerTwo);
         Round round = scoringEngine.getPlayersWithRoundScore(players);
         int actualScore = round.getPlayerScores().get(0).getTotalScore();
-        String playerOneSelection = round.getPlayerSelections().get(0).getPlayerSelection();
-        String playerTwoSelection = round.getPlayerSelections().get(1).getPlayerSelection();
-        int expectedScore = playerOneSelection.equals(playerTwoSelection) ? 0 : isPlayerOneWinner(playerOneSelection, playerTwoSelection) ? 1 : -1;
+        PlayerSelection playerOneSelection = round.getPlayerSelections().get(0);
+        PlayerSelection playerTwoSelection = round.getPlayerSelections().get(1);
+        int expectedScore;
+        String winnerId = GameUtility.findWinner(playerOneSelection, playerTwoSelection);
+        if (playerOneSelection.getPlayerSelection().equals(playerTwoSelection.getPlayerSelection())) {
+            expectedScore = 0;
+        } else {
+            if (winnerId.equals(playerOneSelection.getPlayerId())) {
+                expectedScore = 1;
+            } else {
+                expectedScore = -1;
+            }
+        }
         assertEquals(expectedScore, actualScore);
     }
 }

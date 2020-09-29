@@ -1,34 +1,29 @@
 package com.mavericks.rockpaperscissors.service;
 
-import com.mavericks.rockpaperscissors.controller.Game;
+import com.mavericks.rockpaperscissors.engine.Game;
+import com.mavericks.rockpaperscissors.engine.PlayerScore;
 import com.mavericks.rockpaperscissors.engine.ScoreBoard;
 import com.mavericks.rockpaperscissors.enums.Score;
 import com.mavericks.rockpaperscissors.players.Player;
 import com.mavericks.rockpaperscissors.players.Robot;
-import com.mavericks.rockpaperscissors.util.GameUtility;
-import org.junit.Before;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-import org.mockito.MockitoAnnotations;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.mockito.Mock;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 class GameHandlerTest {
+    @Mock
     private Game game = new Game();
 
     @InjectMocks
-    private ScoreBoard scoreBoard = new ScoreBoard();
-
-    @Before
-    void setup() {
-        MockitoAnnotations.initMocks(this);
-    }
+    private ScoreBoard scoreBoard;
 
     @Test
     void playGame() {
@@ -42,11 +37,13 @@ class GameHandlerTest {
         list.add(computerOne);
         list.add(computerTwo);
         game.playGame(list);
-        String playerOneSelection = scoreBoard.getRounds().get(0).getPlayerSelections().get(0).getPlayerSelection();
-        String playerTwoSelection = scoreBoard.getRounds().get(0).getPlayerSelections().get(1).getPlayerSelection();
+        int lastRoundIndex = scoreBoard.getRounds().size() - 1;
 
-        int playerOneScore = playerOneSelection.equals(playerTwoSelection) ? 0 : GameUtility.isPlayerOneWinner(playerOneSelection, playerTwoSelection) ? 1 : -1;
-        assertEquals(playerOneScore, scoreBoard.getRounds().get(0).getPlayerScores().get(0).getTotalScore());
-        //assertEquals(playerList.get(1).getTotalScore(), computerTwo.getTotalScore());
+        PlayerScore playerOneScore = scoreBoard.getRounds().get(lastRoundIndex).getPlayerScores().get(0);
+        PlayerScore playerTwoScore = scoreBoard.getRounds().get(lastRoundIndex).getPlayerScores().get(1);
+
+        int winningScore = Math.max(playerOneScore.getTotalScore(), playerTwoScore.getTotalScore());
+
+        assertEquals(winningScore, Score.WINNING_SCORE.getValue());
     }
 }

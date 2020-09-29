@@ -1,19 +1,24 @@
 package com.mavericks.rockpaperscissors.util;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import com.mavericks.rockpaperscissors.engine.PlayerSelection;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 public class GameUtilityTest {
 
     @Test
     public void test_gameWinner() {
-        String shapeOne = "PAPER";
-        String shapeTwo = "ROCK";
-        boolean result = GameUtility.isPlayerOneWinner(shapeOne, shapeTwo);
-        assertTrue(result);
+        PlayerSelection playerOneSelection = new PlayerSelection();
+        PlayerSelection playerTwoSelection = new PlayerSelection();
+        playerOneSelection.setPlayerId("1");
+        playerOneSelection.setPlayerSelection("PAPER");
+        playerTwoSelection.setPlayerId("2");
+        playerTwoSelection.setPlayerSelection("ROCK");
+        String winnerId = GameUtility.findWinner(playerOneSelection, playerTwoSelection);
+        assertEquals(winnerId, "1");
     }
 }

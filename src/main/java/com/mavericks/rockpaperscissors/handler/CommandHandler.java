@@ -1,25 +1,21 @@
-package com.mavericks.rockpaperscissors.controller;
+package com.mavericks.rockpaperscissors.handler;
 
-import com.mavericks.rockpaperscissors.engine.PlayerScore;
-import com.mavericks.rockpaperscissors.engine.Round;
-import com.mavericks.rockpaperscissors.engine.ScoreBoard;
-import com.mavericks.rockpaperscissors.engine.ScoringEngine;
-import com.mavericks.rockpaperscissors.strategy.CommandLineSelection;
+import com.mavericks.rockpaperscissors.engine.Game;
 import com.mavericks.rockpaperscissors.players.Human;
 import com.mavericks.rockpaperscissors.players.Player;
 import com.mavericks.rockpaperscissors.players.Robot;
+import com.mavericks.rockpaperscissors.strategy.CommandLineSelection;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.List;
+import java.util.Scanner;
 
 import static com.mavericks.rockpaperscissors.enums.CommandLineMessage.*;
-import static com.mavericks.rockpaperscissors.enums.Score.WINNING_SCORE;
 import static com.mavericks.rockpaperscissors.util.CommandUtility.exitCommandLine;
 
-public class Game {
-
+public class CommandHandler {
     private static Scanner scanner = new Scanner(System.in);
-    private ScoreBoard scoreBoard = new ScoreBoard();
-    private ScoringEngine scoringEngine = new ScoringEngine();
 
     public static void receiveUserInputs() {
         List<Player> players = new ArrayList<>();
@@ -47,7 +43,6 @@ public class Game {
                     }
                     players.add(player);
                 }
-
                 Game game = new Game();
                 game.playGame(players);
                 if (userInput == 3) {
@@ -64,25 +59,4 @@ public class Game {
             }
         }
     }
-
-    public void playGame(List<Player> players) {
-        Round round = scoringEngine.getPlayersWithRoundScore(players);
-        while (isGameOn(round)) {
-            //round..stream().map(player -> player.setCurrentRound(round)).forEach(System.out::println);
-            scoreBoard.setRounds(round);
-            round = scoringEngine.getPlayersWithRoundScore(players);
-        }
-        int lastRound = scoreBoard.getRounds().size() - 1;
-        String winner = scoreBoard.getRounds().get(lastRound).getPlayerScores().stream().max(Comparator.comparing(PlayerScore::getTotalScore)).get().getPlayerId();
-        if (winner != null) {
-            System.out.println(winner + " is the winner.");
-        } else {
-            System.out.println(" The game is the tied.");
-        }
-    }
-
-    private boolean isGameOn(Round round) {
-        return round.getPlayerScores().stream().allMatch(player -> player.getTotalScore() < WINNING_SCORE.getValue());
-    }
-
 }
