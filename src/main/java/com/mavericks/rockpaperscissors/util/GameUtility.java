@@ -6,15 +6,15 @@ import com.mavericks.rockpaperscissors.enums.Shapes;
 
 public class GameUtility {
     public static String findWinner(PlayerStatistics playerOneStats, PlayerStatistics playerTwoStats) {
-        if(((playerOneStats.getPlayerSelection().equals(Shapes.SCISSIORS.getValue())
-                && playerTwoStats.getPlayerSelection().equals(Shapes.PAPER.getValue()))
-                || (playerOneStats.getPlayerSelection().equals(Shapes.ROCK.getValue())
-                && playerTwoStats.getPlayerSelection().equals(Shapes.SCISSIORS.getValue()))
-                || (playerOneStats.getPlayerSelection().equals(Shapes.PAPER.getValue())
-                && playerTwoStats.getPlayerSelection().equals(Shapes.ROCK.getValue())))){
-            return playerOneStats.getPlayerId();
+        if(((playerOneStats.getSelection().equals(Shapes.SCISSIORS.getValue())
+                && playerTwoStats.getSelection().equals(Shapes.PAPER.getValue()))
+                || (playerOneStats.getSelection().equals(Shapes.ROCK.getValue())
+                && playerTwoStats.getSelection().equals(Shapes.SCISSIORS.getValue()))
+                || (playerOneStats.getSelection().equals(Shapes.PAPER.getValue())
+                && playerTwoStats.getSelection().equals(Shapes.ROCK.getValue())))){
+            return playerOneStats.getId();
         } else {
-            return playerTwoStats.getPlayerId();
+            return playerTwoStats.getId();
         }
     }
 }

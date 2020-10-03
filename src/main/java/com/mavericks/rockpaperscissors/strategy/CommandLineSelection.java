@@ -11,10 +11,6 @@ import static com.mavericks.rockpaperscissors.util.CommandUtility.exitCommandLin
 public class CommandLineSelection implements NextMoveStrategy {
     private Scanner scanner;
 
-    public CommandLineSelection() {
-
-    }
-
     public CommandLineSelection(Scanner userCommand) {
         this.scanner = userCommand;
     }

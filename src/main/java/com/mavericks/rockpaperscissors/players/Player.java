@@ -3,38 +3,38 @@ package com.mavericks.rockpaperscissors.players;
 import com.mavericks.rockpaperscissors.strategy.NextMoveStrategy;
 
 public class Player {
-    private String playerId;
-    private String playerName;
+    private String id;
+    private String name;
     private NextMoveStrategy nextMoveStrategy;
 
     public void setNextMoveStrategy(NextMoveStrategy nextMoveStrategy) {
         this.nextMoveStrategy = nextMoveStrategy;
     }
 
-    public String getPlayerName() {
-        return playerName;
+    public String getName() {
+        return name;
     }
 
     public String getPlayerMove() {
         return nextMoveStrategy.makeMove();
     }
 
-    public void setPlayerId(String playerId) {
-        this.playerId = playerId;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getPlayerId() {
-        return playerId;
+    public String getId() {
+        return id;
     }
 
 
-    public void setPlayerName(String playerName) {
-        this.playerName = playerName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
     public String toString() {
-        return " player '" + playerName + '\'' +
+        return " player '" + name + '\'' +
                 '}';
     }
 

@@ -4,7 +4,7 @@ import com.mavericks.rockpaperscissors.handler.CommandHandler;
 
 public class RockpaperscissorsApplication {
     public static void main(String[] args) {
-        CommandHandler.receiveUserInputs();
+        CommandHandler.handle();
     }
 
 }

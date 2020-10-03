@@ -14,10 +14,10 @@ public class GameUtilityTest {
     public void test_gameWinner() {
         PlayerStatistics playerOneStats = new PlayerStatistics();
         PlayerStatistics playerTwoStats = new PlayerStatistics();
-        playerOneStats.setPlayerId("1");
-        playerOneStats.setPlayerSelection("PAPER");
-        playerTwoStats.setPlayerId("2");
-        playerTwoStats.setPlayerSelection("ROCK");
+        playerOneStats.setId("1");
+        playerOneStats.setSelection("PAPER");
+        playerTwoStats.setId("2");
+        playerTwoStats.setSelection("ROCK");
         String winnerId = GameUtility.findWinner(playerOneStats, playerTwoStats);
         assertEquals(winnerId, "1");
     }

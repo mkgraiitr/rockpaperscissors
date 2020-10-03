@@ -26,20 +26,17 @@ class GameTest {
 
     @Test
     void playGame() {
-        Player computerOne = new Robot();
-        computerOne.setPlayerName("TestSiri");
-        computerOne.setPlayerId("1");
-        Player computerTwo = new Robot();
-        computerTwo.setPlayerName("TestAlexa");
-        computerTwo.setPlayerId("2");
+        Player computerOne = new Robot("1", "TestSiri");
+        Player computerTwo = new Robot("2", "TestAlexa");
         List<Player> list = new ArrayList<>();
         list.add(computerOne);
         list.add(computerTwo);
-        game.playGame(list);
+        int rounds = 1;
+        game.playGame(list, rounds);
         int lastRoundIndex = scoreBoard.getRounds().size() - 1;
 
-        int playerOneScore = scoreBoard.getRounds().get(lastRoundIndex).getPlayerStatistics().get(0).getTotalScore();
-        int playerTwoScore = scoreBoard.getRounds().get(lastRoundIndex).getPlayerStatistics().get(1).getTotalScore();
+        int playerOneScore = scoreBoard.getRounds().get(lastRoundIndex).getPlayerStatistics().get(0).getScore();
+        int playerTwoScore = scoreBoard.getRounds().get(lastRoundIndex).getPlayerStatistics().get(1).getScore();
 
         int winningScore = Math.max(playerOneScore, playerTwoScore);
 

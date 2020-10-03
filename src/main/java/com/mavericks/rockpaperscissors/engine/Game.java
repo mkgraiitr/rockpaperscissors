@@ -1,38 +1,40 @@
 package com.mavericks.rockpaperscissors.engine;
 
+import com.mavericks.rockpaperscissors.enums.CommandLineMessage;
 import com.mavericks.rockpaperscissors.players.Player;
 
-import java.util.Comparator;
-import java.util.List;
-
-import static com.mavericks.rockpaperscissors.enums.Score.WINNING_SCORE;
+import java.util.*;
 
 public class Game {
 
     private ScoreBoard scoreBoard = new ScoreBoard();
-    private ScoringEngine scoringEngine = new ScoringEngine();
 
-    public void playGame(List<Player> players) {
-        boolean isGameOn = true;
-
-        while (isGameOn) {
-            Round round = scoringEngine.getPlayersWithRoundScore(players);
-            System.out.println(round);
-            //round.getPlayerStatistics().get().forEach(System.out::println);
-            scoreBoard.setRounds(round);
-            isGameOn = checkIfGameOn(round);
+    public void playGame(List<Player> players, int numOfRounds) {
+        int currentRound = 1;
+        Map<String, Integer> playerScores = new HashMap<>();
+        while (currentRound <= numOfRounds) {
+            scoreBoard.updateRoundDetails(players);
+            playerScores = scoreBoard.getPlayerScores();
+            printPlayerScores(players, playerScores, currentRound);
+            currentRound++;
         }
-        int lastRound = scoreBoard.getRounds().size() - 1;
-        String winner = scoreBoard.getRounds().get(lastRound).getPlayerStatistics().stream().max(Comparator.comparing(PlayerStatistics::getTotalScore)).get().getPlayerId();
-        if (winner != null) {
-            System.out.println(winner + " is the winner.");
+
+        playerScores = scoreBoard.getPlayerScores();
+        String playerId = playerScores.entrySet().stream().max(Comparator.comparing(Map.Entry::getValue)).get().getKey();
+        if (playerId !=null) {
+            System.out.println(getPlayerName(players, playerId)+ CommandLineMessage.WINNER.getValue());
         } else {
-            System.out.println(" The game is the tied.");
+            System.out.println(CommandLineMessage.GAME_TIED);
         }
     }
 
-    private boolean checkIfGameOn(Round round) {
-        return round.getPlayerStatistics().stream().allMatch(player -> player.getTotalScore() < WINNING_SCORE.getValue());
+    private void printPlayerScores(List<Player> players, Map<String, Integer> playerScores, int currentRound) {
+        playerScores.entrySet().forEach(player -> {
+            System.out.println("At the end of round " + currentRound + ", Player " + getPlayerName(players, player.getKey()) + " scored :: " + player.getValue());
+        });
     }
 
+    private String getPlayerName(List<Player> players, String playerId) {
+        return players.stream().filter(player -> player.getId().equals(playerId)).findFirst().get().getName();
+    }
 }

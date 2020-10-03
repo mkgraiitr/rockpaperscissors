@@ -13,8 +13,8 @@ public class ScoringEngine {
         Round round = new Round();
         for (Player player : players) {
             PlayerStatistics playerStatistics = new PlayerStatistics();
-            playerStatistics.setPlayerId(player.getPlayerId());
-            playerStatistics.setPlayerSelection(player.getPlayerMove());
+            playerStatistics.setId(player.getId());
+            playerStatistics.setSelection(player.getPlayerMove());
             round.setPlayerStatistics(playerStatistics);
         }
 
@@ -24,17 +24,17 @@ public class ScoringEngine {
                 PlayerStatistics playerOneStats = round.getPlayerStatistics().get(playerOneIndex);
                 PlayerStatistics playerTwoStats = round.getPlayerStatistics().get(playerTwoIndex);
 
-                if (playerOneStats.getPlayerSelection().equals(playerTwoStats.getPlayerSelection())) {
-                    playerOneStats.updateTotalScore(DRAW.getValue());
-                    playerTwoStats.updateTotalScore(DRAW.getValue());
+                if (playerOneStats.getSelection().equals(playerTwoStats.getSelection())) {
+                    playerOneStats.updateScore(DRAW.getValue());
+                    playerTwoStats.updateScore(DRAW.getValue());
                 } else {
                     String winnerPlayerId = GameUtility.findWinner(playerOneStats, playerTwoStats);
-                    if (winnerPlayerId.equals(playerOneStats.getPlayerId())) {
-                        playerOneStats.updateTotalScore(WIN.getValue());
-                        playerTwoStats.updateTotalScore(LOSE.getValue());
+                    if (winnerPlayerId.equals(playerOneStats.getId())) {
+                        playerOneStats.updateScore(WIN.getValue());
+                        playerTwoStats.updateScore(LOSE.getValue());
                     } else {
-                        playerTwoStats.updateTotalScore(WIN.getValue());
-                        playerOneStats.updateTotalScore(LOSE.getValue());
+                        playerTwoStats.updateScore(WIN.getValue());
+                        playerOneStats.updateScore(LOSE.getValue());
                     }
                 }
                 round.setPlayerStatistics(playerOneIndex, playerOneStats);

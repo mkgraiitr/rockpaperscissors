@@ -1,36 +1,36 @@
 package com.mavericks.rockpaperscissors.engine;
 
 public class PlayerStatistics {
-    private String playerId;
-    private String playerSelection;
-    private int totalScore;
+    private String id;
+    private String selection;
+    private int score;
 
-    public String getPlayerId() {
-        return playerId;
+    public String getId() {
+        return id;
     }
 
-    public void setPlayerId(String playerId) {
-        this.playerId = playerId;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getPlayerSelection() {
-        return playerSelection;
+    public String getSelection() {
+        return selection;
     }
 
-    public void setPlayerSelection(String playerSelection) {
-        this.playerSelection = playerSelection;
+    public void setSelection(String selection) {
+        this.selection = selection;
     }
 
-    public int getTotalScore() {
-        return totalScore;
+    public int getScore() {
+        return score;
     }
 
-    public void updateTotalScore(int currentRoundScore) {
-        totalScore += currentRoundScore;
+    public void updateScore(int currentRoundScore) {
+        score += currentRoundScore;
     }
 
     @Override
     public String toString() {
-        return "Player Id:: " + playerId + " selected -" + playerSelection + " and scored in total:: " + getTotalScore();
+        return "Player Id:: " + id + " selected -" + selection + " and scored :: " + getScore();
     }
 }
