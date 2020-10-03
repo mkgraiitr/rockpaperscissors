@@ -18,14 +18,7 @@ public class Game {
             printPlayerScores(players, playerScores, currentRound);
             currentRound++;
         }
-
-        playerScores = scoreBoard.getPlayerScores();
-        String playerId = playerScores.entrySet().stream().max(Comparator.comparing(Map.Entry::getValue)).get().getKey();
-        if (playerId !=null) {
-            System.out.println(getPlayerName(players, playerId)+ CommandLineMessage.WINNER.getValue());
-        } else {
-            System.out.println(CommandLineMessage.GAME_TIED);
-        }
+        declareWinner(players);
     }
 
     private void printPlayerScores(List<Player> players, Map<String, Integer> playerScores, int currentRound) {
@@ -34,7 +27,18 @@ public class Game {
         });
     }
 
+    private void declareWinner(List<Player> players){
+        Map<String, Integer> playerScores = scoreBoard.getPlayerScores();
+        String playerId = playerScores.entrySet().stream().max(Comparator.comparing(Map.Entry::getValue)).get().getKey();
+        if (playerId !=null) {
+            System.out.println(getPlayerName(players, playerId)+ CommandLineMessage.WINNER.getValue());
+        } else {
+            System.out.println(CommandLineMessage.GAME_TIED);
+        }
+    }
+
     private String getPlayerName(List<Player> players, String playerId) {
         return players.stream().filter(player -> player.getId().equals(playerId)).findFirst().get().getName();
     }
+
 }
