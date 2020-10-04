@@ -12,14 +12,14 @@ public enum PlayerType {
         this.value = value;
     }
 
-    public int getValue() {
-        return this.value;
-    }
-
     public static PlayerType getPlayerType(int typeInput) {
         return Stream.of(PlayerType.values())
                 .filter(playerType -> playerType.value == typeInput)
                 .findFirst().get();
 
+    }
+
+    public int getValue() {
+        return this.value;
     }
 }

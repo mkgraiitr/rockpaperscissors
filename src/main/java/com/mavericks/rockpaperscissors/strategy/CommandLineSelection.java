@@ -10,8 +10,10 @@ import static com.mavericks.rockpaperscissors.util.CommandUtility.exitCommandLin
 
 public class CommandLineSelection implements NextMoveStrategy {
     private Scanner scanner;
+    private String id;
 
-    public CommandLineSelection(Scanner userCommand) {
+    public CommandLineSelection(String id, Scanner userCommand) {
+        this.id = id;
         this.scanner = userCommand;
     }
 
@@ -26,7 +28,7 @@ public class CommandLineSelection implements NextMoveStrategy {
                     System.out.println(EXCEED_INVALID_ATTEMPTS.getValue());
                     exitCommandLine(scanner);
                 }
-                System.out.println(GAME_OPTIONS.getValue());
+                System.out.println("Player id " + id + ", " + GAME_OPTIONS.getValue());
                 userSelection = scanner.nextInt();
                 if (userSelection > 3 || userSelection < 1) {
                     System.out.println(OUT_OF_RANGE.getValue());

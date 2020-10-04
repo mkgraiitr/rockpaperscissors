@@ -5,9 +5,7 @@ import com.mavericks.rockpaperscissors.engine.PlayerStatistics;
 import com.mavericks.rockpaperscissors.enums.Shapes;
 import com.mavericks.rockpaperscissors.players.Player;
 
-import java.util.Comparator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class GameUtility {
     public static String findWinner(PlayerStatistics playerOneStats, PlayerStatistics playerTwoStats) {
@@ -27,8 +25,11 @@ public class GameUtility {
         return players.stream().filter(player -> player.getId().equals(playerId)).findFirst().get().getName();
     }
 
-    public static String getGameWinner(Map<String, Integer> playerScores) {
-        return playerScores.entrySet().stream().max(Comparator.comparing(Map.Entry::getValue)).get().getKey();
+    public static Optional<String> getGameWinner(Map<String, Integer> playerScores) {
+        if (new HashSet<>(playerScores.values()).size() > 1)
+            return Optional.of(playerScores.entrySet().stream().max(Comparator.comparing(Map.Entry::getValue)).get().getKey());
+        else
+            return Optional.empty();
     }
 }
 

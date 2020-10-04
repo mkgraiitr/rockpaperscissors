@@ -4,10 +4,7 @@ import com.mavericks.rockpaperscissors.engine.PlayerStatistics;
 import com.mavericks.rockpaperscissors.players.Player;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -30,9 +27,8 @@ public class GameUtilityTest {
         Map<String, Integer> scores = new HashMap<>();
         scores.put("1", 10);
         scores.put("2", 12);
-        String winnerId = GameUtility.getGameWinner(scores);
-        assertEquals("2", winnerId);
-
+        Optional<String> winnerId = GameUtility.getGameWinner(scores);
+        assertEquals("2", winnerId.get());
     }
 
     @Test

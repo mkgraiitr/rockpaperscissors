@@ -7,9 +7,10 @@ public class Player {
     private String name;
     private NextMoveStrategy nextMoveStrategy;
 
-    public Player(){
+    public Player() {
     }
-    public Player(String id, String name){
+
+    public Player(String id, String name) {
         this.id = id;
         this.name = name;
     }
@@ -22,21 +23,20 @@ public class Player {
         return name;
     }
 
-    public String getPlayerMove() {
-        return nextMoveStrategy.makeMove();
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public String getPlayerMove() {
+        return nextMoveStrategy.makeMove();
     }
 
     public String getId() {
         return id;
     }
 
-
-    public void setName(String name) {
-        this.name = name;
+    public void setId(String id) {
+        this.id = id;
     }
 
     @Override

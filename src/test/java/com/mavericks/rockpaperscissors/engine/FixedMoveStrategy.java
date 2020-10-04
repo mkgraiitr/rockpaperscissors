@@ -1,4 +1,4 @@
-package com.mavericks.rockpaperscissors.service;
+package com.mavericks.rockpaperscissors.engine;
 
 import com.mavericks.rockpaperscissors.strategy.NextMoveStrategy;
 
@@ -40,7 +40,7 @@ public class FixedMoveStrategy implements NextMoveStrategy {
             case "3":
                 return playerThreeFixedMoves.pop();
             default:
-                return null;
+                return "";
         }
     }
 }

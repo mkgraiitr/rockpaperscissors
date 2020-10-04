@@ -1,6 +1,5 @@
-package com.mavericks.rockpaperscissors.service;
+package com.mavericks.rockpaperscissors.engine;
 
-import com.mavericks.rockpaperscissors.engine.Game;
 import com.mavericks.rockpaperscissors.players.Player;
 import com.mavericks.rockpaperscissors.util.GameUtility;
 import org.junit.jupiter.api.Test;
@@ -8,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -25,8 +25,8 @@ class GameTest {
         list.add(computerTwo);
         int rounds = 5;
         Map<String, Integer> playerScores = game.playGame(list, rounds);
-        String playerId = GameUtility.getGameWinner(playerScores);
-        assertEquals("1", playerId);
+        Optional<String> playerId = GameUtility.getGameWinner(playerScores);
+        assertEquals("1", playerId.get());
 
     }
 }

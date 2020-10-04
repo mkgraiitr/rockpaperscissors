@@ -8,6 +8,12 @@ public class Human extends Player {
     private String id;
     private String name;
 
+    public Human(String id, String name, Scanner scanner) {
+        this.id = id;
+        this.name = name;
+        setNextMoveStrategy(new CommandLineSelection(id, scanner));
+    }
+
     @Override
     public String getId() {
         return id;
@@ -26,11 +32,5 @@ public class Human extends Player {
     @Override
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Human(String id, String name, Scanner scanner) {
-        this.id = id;
-        this.name = name;
-        setNextMoveStrategy(new CommandLineSelection(scanner));
     }
 }

@@ -1,18 +1,14 @@
-package com.mavericks.rockpaperscissors.strategy;
+package com.mavericks.rockpaperscissors.engine;
 
-import com.mavericks.rockpaperscissors.engine.Game;
-import com.mavericks.rockpaperscissors.engine.PlayerStatistics;
-import com.mavericks.rockpaperscissors.engine.Round;
-import com.mavericks.rockpaperscissors.engine.ScoringEngine;
 import com.mavericks.rockpaperscissors.players.Player;
 import com.mavericks.rockpaperscissors.players.Robot;
-import com.mavericks.rockpaperscissors.service.FixedMoveStrategy;
 import com.mavericks.rockpaperscissors.util.GameUtility;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import static com.mavericks.rockpaperscissors.util.GameUtility.findWinner;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -59,7 +55,7 @@ class ScoringEngineTest {
         players.add(playerThree);
         Game game = new Game();
         Map<String, Integer> playerScores = game.playGame(players, 5);
-        String gameWinner = GameUtility.getGameWinner(playerScores);
-        assertEquals("3", gameWinner);
+        Optional<String> gameWinner = GameUtility.getGameWinner(playerScores);
+        assertEquals("3", gameWinner.get());
     }
 }
