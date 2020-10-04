@@ -3,7 +3,7 @@
 The program is created to let users play Rock Paper Scissors game with a computer or another user.
 
 **How to run:**
-It is a simple command line application, which can be run from the main method of RockpaperscissorsApplication. The fllowing command can be used to run the program.
+It is a simple command line application, which can be run from the main method of RockpaperscissorsApplication.
 
 
 **Language, external libraries and dependencies:**
