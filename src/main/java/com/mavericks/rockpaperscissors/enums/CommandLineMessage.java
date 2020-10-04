@@ -15,7 +15,6 @@ public enum CommandLineMessage {
     ENTER_PLAYER_TYPE("Please enter player type: enter 1 for Human and 2 for Computer "),
     GAME_TIED("The game is tied."),
     WINNER("is the winner. \n"),
-    INVALID_ATTEMPTS(""),
     QUITING("Thanks for playing rock paper scissors with us. Hope you enjoyed!!\n");
 
     private final String value;

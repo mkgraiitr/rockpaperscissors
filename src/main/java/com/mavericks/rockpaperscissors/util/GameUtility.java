@@ -11,12 +11,12 @@ import java.util.Map;
 
 public class GameUtility {
     public static String findWinner(PlayerStatistics playerOneStats, PlayerStatistics playerTwoStats) {
-        if(((playerOneStats.getSelection().equals(Shapes.SCISSIORS.getValue())
+        if (((playerOneStats.getSelection().equals(Shapes.SCISSIORS.getValue())
                 && playerTwoStats.getSelection().equals(Shapes.PAPER.getValue()))
                 || (playerOneStats.getSelection().equals(Shapes.ROCK.getValue())
                 && playerTwoStats.getSelection().equals(Shapes.SCISSIORS.getValue()))
                 || (playerOneStats.getSelection().equals(Shapes.PAPER.getValue())
-                && playerTwoStats.getSelection().equals(Shapes.ROCK.getValue())))){
+                && playerTwoStats.getSelection().equals(Shapes.ROCK.getValue())))) {
             return playerOneStats.getId();
         } else {
             return playerTwoStats.getId();
@@ -27,7 +27,7 @@ public class GameUtility {
         return players.stream().filter(player -> player.getId().equals(playerId)).findFirst().get().getName();
     }
 
-    public static String getGameWinner(Map<String, Integer> playerScores){
+    public static String getGameWinner(Map<String, Integer> playerScores) {
         return playerScores.entrySet().stream().max(Comparator.comparing(Map.Entry::getValue)).get().getKey();
     }
 }

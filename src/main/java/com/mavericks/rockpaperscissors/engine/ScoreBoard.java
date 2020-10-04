@@ -2,7 +2,9 @@ package com.mavericks.rockpaperscissors.engine;
 
 import com.mavericks.rockpaperscissors.players.Player;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class ScoreBoard {

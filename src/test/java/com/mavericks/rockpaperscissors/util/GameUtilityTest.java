@@ -24,8 +24,9 @@ public class GameUtilityTest {
         String winnerId = GameUtility.findWinner(playerOneStats, playerTwoStats);
         assertEquals(winnerId, "1");
     }
+
     @Test
-    public void test_getGameWinner(){
+    public void test_getGameWinner() {
         Map<String, Integer> scores = new HashMap<>();
         scores.put("1", 10);
         scores.put("2", 12);
@@ -35,7 +36,7 @@ public class GameUtilityTest {
     }
 
     @Test
-    public void test_getPlayerName(){
+    public void test_getPlayerName() {
         Player playerOne = new Player("1", "Mama");
         Player playerTwo = new Player("2", "Aama");
         List<Player> players = new ArrayList<>();

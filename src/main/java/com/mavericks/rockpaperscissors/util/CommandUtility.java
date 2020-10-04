@@ -3,7 +3,6 @@ package com.mavericks.rockpaperscissors.util;
 import com.mavericks.rockpaperscissors.enums.CommandLineMessage;
 import com.mavericks.rockpaperscissors.players.Player;
 
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
@@ -25,10 +24,10 @@ public class CommandUtility {
         });
     }
 
-    public static void printGameWinner(List<Player> players, Map<String, Integer> playerScores){
+    public static void printGameWinner(List<Player> players, Map<String, Integer> playerScores) {
         String playerId = GameUtility.getGameWinner(playerScores);
-        if (playerId !=null) {
-            System.out.println(getPlayerName(players, playerId)+ CommandLineMessage.WINNER.getValue());
+        if (playerId != null) {
+            System.out.println(getPlayerName(players, playerId) + CommandLineMessage.WINNER.getValue());
         } else {
             System.out.println(CommandLineMessage.GAME_TIED);
         }

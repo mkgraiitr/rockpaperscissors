@@ -4,7 +4,6 @@ import com.mavericks.rockpaperscissors.strategy.CommandLineSelection;
 
 import java.util.Scanner;
 
-
 public class Human extends Player {
     private String id;
     private String name;

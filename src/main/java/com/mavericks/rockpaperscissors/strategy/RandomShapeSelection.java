@@ -2,11 +2,9 @@ package com.mavericks.rockpaperscissors.strategy;
 
 import java.util.Random;
 
-import static com.mavericks.rockpaperscissors.enums.Shapes.PAPER;
-import static com.mavericks.rockpaperscissors.enums.Shapes.ROCK;
-import static com.mavericks.rockpaperscissors.enums.Shapes.SCISSIORS;
+import static com.mavericks.rockpaperscissors.enums.Shapes.*;
 
-public class  RandomShapeSelection implements NextMoveStrategy {
+public class RandomShapeSelection implements NextMoveStrategy {
 
     @Override
     public String makeMove() {
