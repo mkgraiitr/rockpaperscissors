@@ -1,15 +1,18 @@
 package com.mavericks.rockpaperscissors.engine;
 
-import com.mavericks.rockpaperscissors.enums.CommandLineMessage;
 import com.mavericks.rockpaperscissors.players.Player;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static com.mavericks.rockpaperscissors.util.CommandUtility.printPlayerScores;
 
 public class Game {
 
     private ScoreBoard scoreBoard = new ScoreBoard();
 
-    public void playGame(List<Player> players, int numOfRounds) {
+    public Map<String, Integer> playGame(List<Player> players, int numOfRounds) {
         int currentRound = 1;
         Map<String, Integer> playerScores = new HashMap<>();
         while (currentRound <= numOfRounds) {
@@ -18,27 +21,6 @@ public class Game {
             printPlayerScores(players, playerScores, currentRound);
             currentRound++;
         }
-        declareWinner(players);
+        return playerScores;
     }
-
-    private void printPlayerScores(List<Player> players, Map<String, Integer> playerScores, int currentRound) {
-        playerScores.entrySet().forEach(player -> {
-            System.out.println("At the end of round " + currentRound + ", Player " + getPlayerName(players, player.getKey()) + " scored :: " + player.getValue());
-        });
-    }
-
-    private void declareWinner(List<Player> players){
-        Map<String, Integer> playerScores = scoreBoard.getPlayerScores();
-        String playerId = playerScores.entrySet().stream().max(Comparator.comparing(Map.Entry::getValue)).get().getKey();
-        if (playerId !=null) {
-            System.out.println(getPlayerName(players, playerId)+ CommandLineMessage.WINNER.getValue());
-        } else {
-            System.out.println(CommandLineMessage.GAME_TIED);
-        }
-    }
-
-    private String getPlayerName(List<Player> players, String playerId) {
-        return players.stream().filter(player -> player.getId().equals(playerId)).findFirst().get().getName();
-    }
-
 }

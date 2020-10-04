@@ -1,27 +1,28 @@
 package com.mavericks.rockpaperscissors.strategy;
 
+import com.mavericks.rockpaperscissors.engine.Game;
 import com.mavericks.rockpaperscissors.engine.PlayerStatistics;
 import com.mavericks.rockpaperscissors.engine.Round;
 import com.mavericks.rockpaperscissors.engine.ScoringEngine;
 import com.mavericks.rockpaperscissors.players.Player;
 import com.mavericks.rockpaperscissors.players.Robot;
+import com.mavericks.rockpaperscissors.service.FixedMoveStrategy;
+import com.mavericks.rockpaperscissors.util.GameUtility;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
-import static com.mavericks.rockpaperscissors.util.GameUtility.*;
+import static com.mavericks.rockpaperscissors.util.GameUtility.findWinner;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@ExtendWith(SpringExtension.class)
 class ScoringEngineTest {
 
     private ScoringEngine scoringEngine = new ScoringEngine();
 
     @Test
-    void testCurrentRoundScore() {
+    void testCurrentRoundScore_twoPlayers() {
         Player playerOne = new Robot("1", "TestSiri");
         Player playerTwo = new Robot("2", "TestAlexa");
         List<Player> players = new ArrayList<>();
@@ -42,5 +43,23 @@ class ScoringEngineTest {
             }
         }
         assertEquals(expectedScore, actualScore);
+    }
+
+    @Test
+    void testCurrentRoundScore_threePlayers() {
+        Player playerOne = new Robot("1", "TestSiri");
+        playerOne.setNextMoveStrategy(new FixedMoveStrategy("1"));
+        Player playerTwo = new Robot("2", "TestAlexa");
+        playerTwo.setNextMoveStrategy(new FixedMoveStrategy("2"));
+        Player playerThree = new Robot("3", "TestShaboo");
+        playerThree.setNextMoveStrategy(new FixedMoveStrategy("3"));
+        List<Player> players = new ArrayList<>();
+        players.add(playerOne);
+        players.add(playerTwo);
+        players.add(playerThree);
+        Game game = new Game();
+        Map<String, Integer> playerScores = game.playGame(players, 5 );
+        String gameWinner = GameUtility.getGameWinner(playerScores);
+        assertEquals("3", gameWinner);
     }
 }

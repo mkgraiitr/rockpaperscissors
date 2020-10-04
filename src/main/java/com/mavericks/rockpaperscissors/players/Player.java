@@ -7,6 +7,13 @@ public class Player {
     private String name;
     private NextMoveStrategy nextMoveStrategy;
 
+    public Player(){
+    }
+    public Player(String id, String name){
+        this.id = id;
+        this.name = name;
+    }
+
     public void setNextMoveStrategy(NextMoveStrategy nextMoveStrategy) {
         this.nextMoveStrategy = nextMoveStrategy;
     }

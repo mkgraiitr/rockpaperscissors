@@ -6,7 +6,7 @@ import static com.mavericks.rockpaperscissors.enums.Shapes.PAPER;
 import static com.mavericks.rockpaperscissors.enums.Shapes.ROCK;
 import static com.mavericks.rockpaperscissors.enums.Shapes.SCISSIORS;
 
-public class RandomShapeSelection implements NextMoveStrategy {
+public class  RandomShapeSelection implements NextMoveStrategy {
 
     @Override
     public String makeMove() {

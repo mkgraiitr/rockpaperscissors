@@ -6,13 +6,11 @@ import com.mavericks.rockpaperscissors.players.Human;
 import com.mavericks.rockpaperscissors.players.Player;
 import com.mavericks.rockpaperscissors.players.Robot;
 
-import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 import static com.mavericks.rockpaperscissors.enums.CommandLineMessage.*;
 import static com.mavericks.rockpaperscissors.util.CommandUtility.exitCommandLine;
+import static com.mavericks.rockpaperscissors.util.CommandUtility.printGameWinner;
 
 public class CommandHandler {
     private static Scanner scanner = new Scanner(System.in);
@@ -27,7 +25,7 @@ public class CommandHandler {
                 List<Player> players = getPlayerDetails(userInput);
                 System.out.println(ENTER_ROUNDS.getValue());
                 int rounds = scanner.nextInt();
-                startGame(players, rounds);
+                playRockPaperScissors(players, rounds);
                 if (userInput == 0) {
                     isCommandLineActive = false;
                     exitCommandLine(scanner);
@@ -50,7 +48,7 @@ public class CommandHandler {
             System.out.println(ENTER_PLAYER_TYPE.getValue());
             int selectedPlayerType = scanner.nextInt();
             PlayerType playerType = PlayerType.getPlayerType(selectedPlayerType);
-            Player player = null;
+            Player player;
             switch (playerType) {
                 case HUMAN:
                     player = new Human(String.valueOf(playerNumber), playerName, scanner);
@@ -68,8 +66,9 @@ public class CommandHandler {
         return players;
     }
 
-    private static void startGame(List<Player> players, int rounds) {
+    private static void playRockPaperScissors(List<Player> players, int rounds) {
         Game game = new Game();
-        game.playGame(players, rounds);
+        Map<String, Integer> playerScores = game.playGame(players, rounds);
+        printGameWinner(players, playerScores);
     }
 }

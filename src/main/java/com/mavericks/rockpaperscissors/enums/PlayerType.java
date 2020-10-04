@@ -16,9 +16,9 @@ public enum PlayerType {
         return this.value;
     }
 
-    public static PlayerType getPlayerType(int typeInput){
+    public static PlayerType getPlayerType(int typeInput) {
         return Stream.of(PlayerType.values())
-                .filter(playerType -> playerType.value==typeInput)
+                .filter(playerType -> playerType.value == typeInput)
                 .findFirst().get();
 
     }
