@@ -1,9 +1,7 @@
 package com.mavericks.rockpaperscissors.service;
 
 import com.mavericks.rockpaperscissors.engine.Game;
-import com.mavericks.rockpaperscissors.enums.Score;
 import com.mavericks.rockpaperscissors.players.Player;
-import com.mavericks.rockpaperscissors.players.Robot;
 import com.mavericks.rockpaperscissors.util.GameUtility;
 import org.junit.jupiter.api.Test;
 

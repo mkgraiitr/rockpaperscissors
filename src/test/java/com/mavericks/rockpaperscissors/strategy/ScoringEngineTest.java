@@ -58,7 +58,7 @@ class ScoringEngineTest {
         players.add(playerTwo);
         players.add(playerThree);
         Game game = new Game();
-        Map<String, Integer> playerScores = game.playGame(players, 5 );
+        Map<String, Integer> playerScores = game.playGame(players, 5);
         String gameWinner = GameUtility.getGameWinner(playerScores);
         assertEquals("3", gameWinner);
     }

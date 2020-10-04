@@ -2,7 +2,9 @@ package com.mavericks.rockpaperscissors.service;
 
 import com.mavericks.rockpaperscissors.strategy.NextMoveStrategy;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Stack;
 
 public class FixedMoveStrategy implements NextMoveStrategy {
     private String playerId;
