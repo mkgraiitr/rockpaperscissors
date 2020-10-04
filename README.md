@@ -14,11 +14,11 @@ Libraries - Jupiter API for Junit (version 5.5.2)
 1) Number of players, type of the user - whether human or computer, and number of rounds to be played will be the user inputs.
 2) Human player will have default strategy to get next moves from command line
 3) Computer player will have default random selection strategy to get next moves
-4) Scoring Logic - 
-   i) If both the players selected the same shape, each player will be awarded score zero.
-   ii) In other cases, the winner will score +1 and the loser will score -1
-   iii) In multiplayer games, each player will be scored against all the remaining players. For example, in a three player game, if player A selected ROCK, player B selected PAPER and player C selected SCISSORS, player A will score -1 against player B, but score +1 against player C. In total, player A will have zero score in this round.
-   iv) The scores will be accumulated after each round. After the last round (user input), the highest scorer will be declared as winner. If two players scored the same score, the game would be tied.
+4) **Scoring Logic**
+    If both the players selected the same shape, each player will be awarded score zero.
+   - In other cases, the winner will score +1 and the loser will score -1
+   - In multiplayer games, each player will be scored against all the remaining players. For example, in a three player game, if player A selected ROCK, player B selected PAPER and player C selected SCISSORS, player A will score -1 against player B, but score +1 against player C. In total, player A will have zero score in this round.
+   - The scores will be accumulated after each round. After the last round (user input), the highest scorer will be declared as winner. If two players scored the same score, the game would be tied.
 
 **Design considerations:**
 The following components are made extendable and loosely coupled with other components
