@@ -18,7 +18,7 @@ public class CommandUtility {
         System.exit(0);
     }
 
-    public static void printPlayerScores(List<Player> players, Map<String, Integer> playerScores, int currentRound) {
+    public static void printScores(List<Player> players, Map<String, Integer> playerScores, int currentRound) {
         playerScores.entrySet().forEach(player -> {
             System.out.println("At the end of round " + currentRound + ", Player " + getPlayerName(players, player.getKey()) + " scored :: " + player.getValue());
         });

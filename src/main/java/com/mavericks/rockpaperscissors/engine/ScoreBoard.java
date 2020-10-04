@@ -21,7 +21,7 @@ public class ScoreBoard {
         rounds.add(round);
     }
 
-    public Map<String, Integer> getPlayerScores() {
+    public Map<String, Integer> getScores() {
         return rounds.stream().flatMap(playerStats -> playerStats.getPlayerStatistics().stream())
                 .collect(Collectors.groupingBy(PlayerStatistics::getId, Collectors.summingInt(PlayerStatistics::getScore)));
     }

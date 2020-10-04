@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static com.mavericks.rockpaperscissors.util.CommandUtility.printPlayerScores;
+import static com.mavericks.rockpaperscissors.util.CommandUtility.printScores;
 
 public class Game {
 
@@ -14,13 +14,13 @@ public class Game {
 
     public Map<String, Integer> playGame(List<Player> players, int numOfRounds) {
         int currentRound = 1;
-        Map<String, Integer> playerScores = new HashMap<>();
+        Map<String, Integer> scores = new HashMap<>();
         while (currentRound <= numOfRounds) {
             scoreBoard.updateRoundDetails(players);
-            playerScores = scoreBoard.getPlayerScores();
-            printPlayerScores(players, playerScores, currentRound);
+            scores = scoreBoard.getScores();
+            printScores(players, scores, currentRound);
             currentRound++;
         }
-        return playerScores;
+        return scores;
     }
 }
