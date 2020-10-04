@@ -10,6 +10,6 @@ public class RandomShapeSelection implements NextMoveStrategy {
     public String makeMove() {
         Random random = new Random();
         int selection = random.nextInt(3) + 1;
-        return selection == 1 ? ROCK.getValue() : selection == 2 ? PAPER.getValue() : SCISSIORS.getValue();
+        return selection == 1 ? ROCK.getValue() : selection == 2 ? PAPER.getValue() : SCISSORS.getValue();
     }
 }

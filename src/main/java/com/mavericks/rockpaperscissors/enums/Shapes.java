@@ -3,7 +3,7 @@ package com.mavericks.rockpaperscissors.enums;
 public enum Shapes {
     ROCK("ROCK"),
     PAPER("PAPER"),
-    SCISSIORS("SCISSORS");
+    SCISSORS("SCISSORS");
 
     private final String value;
 

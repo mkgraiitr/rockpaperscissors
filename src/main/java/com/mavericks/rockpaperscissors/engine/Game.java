@@ -12,7 +12,7 @@ public class Game {
 
     private ScoreBoard scoreBoard = new ScoreBoard();
 
-    public Map<String, Integer> playGame(List<Player> players, int numOfRounds) {
+    public Map<String, Integer> play(List<Player> players, int numOfRounds) {
         int currentRound = 1;
         Map<String, Integer> scores = new HashMap<>();
         while (currentRound <= numOfRounds) {

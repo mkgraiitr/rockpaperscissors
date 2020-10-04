@@ -9,7 +9,7 @@ public enum CommandLineMessage {
     GAME_OPTIONS("please enter 1 for ROCK, 2 for PAPER and 3 for SCISSORS:: \n"),
     OUT_OF_RANGE("The entered value is not in range.\n"),
     WELCOME_MSG("Dear user, welcome to rock, paper and scissors game. \n "),
-    ENTER_PLAYERS("Please enter number of players, choose 0 to quit:: "),
+    ENTER_PLAYERS("Please enter number of players, enter q to quit:: "),
     ENTER_ROUNDS("Dear user, please enter number of rounds you want to play:: "),
     ENTER_PLAYER_NAME("Please enter player name:: "),
     ENTER_PLAYER_TYPE("Please enter player type: enter 1 for Human and 2 for Computer "),

@@ -5,9 +5,9 @@ import com.mavericks.rockpaperscissors.players.Player;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
-import static java.util.stream.Collectors.*;
+import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.summingInt;
 
 public class ScoreBoard {
     private ScoringEngine scoringEngine = new ScoringEngine();

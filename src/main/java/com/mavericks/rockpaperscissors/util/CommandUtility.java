@@ -25,7 +25,7 @@ public class CommandUtility {
     }
 
     public static void printGameWinner(List<Player> players, Map<String, Integer> playerScores) {
-        Optional<String> playerId = GameUtility.getGameWinner(playerScores);
+        Optional<String> playerId = GameUtility.finalWinner(playerScores);
         if (playerId.isPresent()) {
             System.out.println(getPlayerName(players, playerId.get()) + WINNER.getValue());
         } else {
