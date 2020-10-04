@@ -22,14 +22,14 @@ public class CommandHandler {
             try {
                 System.out.println(ENTER_PLAYERS.getValue());
                 int userInput = scanner.nextInt();
-                List<Player> players = getPlayerDetails(userInput);
-                System.out.println(ENTER_ROUNDS.getValue());
-                int rounds = scanner.nextInt();
-                playRockPaperScissors(players, rounds);
                 if (userInput == 0) {
                     isCommandLineActive = false;
                     exitCommandLine(scanner);
                 }
+                List<Player> players = getPlayerDetails(userInput);
+                System.out.println(ENTER_ROUNDS.getValue());
+                int rounds = scanner.nextInt();
+                playRockPaperScissors(players, rounds);
             } catch (InputMismatchException e) {
                 System.out.println(INVALID_INPUT.getValue());
                 scanner.nextLine();
