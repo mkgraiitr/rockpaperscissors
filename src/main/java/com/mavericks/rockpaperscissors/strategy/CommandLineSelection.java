@@ -46,5 +46,4 @@ public class CommandLineSelection implements NextMoveStrategy {
         return userSelection == 1 ? Shapes.ROCK.getValue() : userSelection == 2 ? Shapes.PAPER.getValue() : Shapes.SCISSIORS.getValue();
     }
 
-
 }

@@ -31,6 +31,6 @@ public class PlayerStatistics {
 
     @Override
     public String toString() {
-        return "Player Id:: " + id + " selected -" + selection + " and scored :: " + getScore();
+        return "Player Id " + id + " selected " + selection + " and scored " + getScore();
     }
 }
