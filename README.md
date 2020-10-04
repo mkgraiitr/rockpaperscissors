@@ -20,7 +20,7 @@ Assumptions:
    iii) In multiplayer games, each player will be scored against all the remaining players. For example, in a three player game, if player A selected ROCK, player B selected PAPER and player C selected SCISSORS, player A will score -1 against player B, but score +1 against player C. In total, player A will have zero score in this round.
    iv) The scores will be accumulated after each round. After the last round (user input), the highest scorer will be declared as winner. If two players scored the same score, the game would be tied.
 
-Design considerations and project issues: 
+Design considerations: 
 The following components are made extendable and loosely coupled with other components
 1) Strategy to select shapes Rock, Paper and Scissors. Different strategies (such as select learned moves from historical moves of the opponents or moves that use AI) can be made in future by implementing NextMoveStrategy interface.
 2) The program can be extended to make the player change its strategy dynamically during the game
