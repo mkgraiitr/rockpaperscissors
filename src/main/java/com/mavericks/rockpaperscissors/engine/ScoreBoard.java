@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.*;
+
 public class ScoreBoard {
     private ScoringEngine scoringEngine = new ScoringEngine();
     private List<Round> rounds = new ArrayList<>();
@@ -15,14 +17,14 @@ public class ScoreBoard {
         return rounds;
     }
 
-    public void updateRoundDetails(List<Player> players) {
-        Round round = scoringEngine.getPlayersWithRoundScore(players);
+    public void playRound(List<Player> players) {
+        Round round = scoringEngine.getRoundScore(players);
         System.out.println(round);
         rounds.add(round);
     }
 
     public Map<String, Integer> getScores() {
-        return rounds.stream().flatMap(playerStats -> playerStats.getPlayerStatistics().stream())
-                .collect(Collectors.groupingBy(PlayerStatistics::getId, Collectors.summingInt(PlayerStatistics::getScore)));
+        return rounds.stream().flatMap(player -> player.getPlayerStatistics().stream())
+                .collect(groupingBy(PlayerStatistics::getId, summingInt(PlayerStatistics::getScore)));
     }
 }

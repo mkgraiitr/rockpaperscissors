@@ -16,7 +16,7 @@ public class Game {
         int currentRound = 1;
         Map<String, Integer> scores = new HashMap<>();
         while (currentRound <= numOfRounds) {
-            scoreBoard.updateRoundDetails(players);
+            scoreBoard.playRound(players);
             scores = scoreBoard.getScores();
             printScores(players, scores, currentRound);
             currentRound++;

@@ -9,7 +9,7 @@ import static com.mavericks.rockpaperscissors.enums.Score.*;
 
 public class ScoringEngine {
 
-    public Round getPlayersWithRoundScore(List<Player> players) {
+    public Round getRoundScore(List<Player> players) {
         Round round = new Round();
         for (Player player : players) {
             PlayerStatistics playerStatistics = new PlayerStatistics();

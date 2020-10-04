@@ -24,7 +24,7 @@ class ScoringEngineTest {
         List<Player> players = new ArrayList<>();
         players.add(playerOne);
         players.add(playerTwo);
-        Round round = scoringEngine.getPlayersWithRoundScore(players);
+        Round round = scoringEngine.getRoundScore(players);
         int actualScore = round.getPlayerStatistics().get(0).getScore();
         PlayerStatistics playerOneStats = round.getPlayerStatistics().get(0);
         PlayerStatistics playerTwoStats = round.getPlayerStatistics().get(1);
